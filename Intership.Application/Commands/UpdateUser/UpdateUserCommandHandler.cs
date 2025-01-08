@@ -7,9 +7,9 @@ namespace Intership.Application.Commands.UpdateUser
 {
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public UpdateUserCommandHandler(IIntershipRepository repository)
+        public UpdateUserCommandHandler(IUserRepository repository)
         {
             _repository = repository;
         }

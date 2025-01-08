@@ -9,9 +9,9 @@ namespace Intership.Application.Queries.GetAllUsers
 {
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserDto>>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public GetAllUsersQueryHandler(IIntershipRepository repository)
+        public GetAllUsersQueryHandler(IUserRepository repository)
         {
             _repository = repository;
         }

@@ -7,9 +7,9 @@ namespace Intership.Application.Commands.DeleteUser
 {
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Unit>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public DeleteUserCommandHandler(IIntershipRepository repository)
+        public DeleteUserCommandHandler(IUserRepository repository)
         {
             _repository = repository;
         }

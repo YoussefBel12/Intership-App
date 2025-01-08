@@ -8,9 +8,9 @@ namespace Intership.Application.Queries.GetInternById
 {
     public class GetInternByIdQueryHandler : IRequestHandler<GetInternByIdQuery, InternDto>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IInternRepository _repository;
 
-        public GetInternByIdQueryHandler(IIntershipRepository repository)
+        public GetInternByIdQueryHandler(IInternRepository repository)
         {
             _repository = repository;
         }

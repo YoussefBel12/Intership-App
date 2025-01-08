@@ -10,9 +10,9 @@ namespace Intership.Application.Queries.GetAllRecruitmentSessions
 {
     public class GetAllRecruitmentSessionsQueryHandler : IRequestHandler<GetAllRecruitmentSessionsQuery, List<RecruitmentSessionDto>>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IRecruitmentSessionRepository _repository;
 
-        public GetAllRecruitmentSessionsQueryHandler(IIntershipRepository repository)
+        public GetAllRecruitmentSessionsQueryHandler(IRecruitmentSessionRepository repository)
         {
             _repository = repository;
         }

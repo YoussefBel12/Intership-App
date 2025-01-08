@@ -9,9 +9,9 @@ namespace Intership.Application.Queries.GetAllInterns
 {
     public class GetAllInternsQueryHandler : IRequestHandler<GetAllInternsQuery, List<InternDto>>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IInternRepository _repository;
 
-        public GetAllInternsQueryHandler(IIntershipRepository repository)
+        public GetAllInternsQueryHandler(IInternRepository repository)
         {
             _repository = repository;
         }

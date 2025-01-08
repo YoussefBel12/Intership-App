@@ -3,7 +3,7 @@ using Intership.Application.DTOs;
 using Intership.Application.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
-using Intership.Application.DTOs.Intership.Application.DTOs;
+
 
 namespace Intership.Application.Queries.GetSummary
 {

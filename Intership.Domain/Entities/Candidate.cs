@@ -11,7 +11,7 @@
         public string Level { get; set; }
         public string CvFilePath { get; set; }
         public int RecruitmentSessionId { get; set; }
-        public RecruitmentSession RecruitmentSession { get; set; }
+        public virtual RecruitmentSession? RecruitmentSession { get; set; }
         public DateTime DateCreated { get; set; } // New property
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Intership.Application.DTOs;
-using Intership.Application.DTOs.Intership.Application.DTOs;
+
 using Intership.Application.Interfaces;
 using Intership.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +19,7 @@ namespace Intership.Infrastructure.Data
             _context = context;
         }
 
-        // Intern CRUD operations
+      /*  // Intern CRUD operations
         public async Task<Intern> GetInternByIdAsync(int id)
         {
             return await _context.Interns.FindAsync(id);
@@ -194,7 +194,7 @@ namespace Intership.Infrastructure.Data
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
-        }
+        }*/
         // Summary method
         public async Task<SummaryDto> GetSummaryForCurrentYearAsync()
         {
@@ -212,7 +212,7 @@ namespace Intership.Infrastructure.Data
             };
         }
 
-        // Authentication methods
+   /*     // Authentication methods
         public async Task<User> AuthenticateAsync(string email, string password)
         {
             var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
@@ -235,7 +235,7 @@ namespace Intership.Infrastructure.Data
             return false;
 
 
-        }
+        } */
     }
 }
 

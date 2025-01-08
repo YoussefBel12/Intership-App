@@ -8,9 +8,9 @@ namespace Intership.Application.Commands.AddCandidate
 {
     public class AddCandidateCommandHandler : IRequestHandler<AddCandidateCommand, int>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly ICandidateRepository  _repository;
 
-        public AddCandidateCommandHandler(IIntershipRepository repository)
+        public AddCandidateCommandHandler(ICandidateRepository repository)
         {
             _repository = repository;
         }

@@ -11,9 +11,9 @@ namespace Intership.Application.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public CreateUserCommandHandler(IIntershipRepository repository)
+        public CreateUserCommandHandler(IUserRepository repository)
         {
             _repository = repository;
         }

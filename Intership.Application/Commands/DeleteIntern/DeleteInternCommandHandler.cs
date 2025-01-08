@@ -7,9 +7,9 @@ namespace Intership.Application.Commands.DeleteIntern
 {
     public class DeleteInternCommandHandler : IRequestHandler<DeleteInternCommand, Unit>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IInternRepository _repository;
 
-        public DeleteInternCommandHandler(IIntershipRepository repository)
+        public DeleteInternCommandHandler(IInternRepository repository)
         {
             _repository = repository;
         }

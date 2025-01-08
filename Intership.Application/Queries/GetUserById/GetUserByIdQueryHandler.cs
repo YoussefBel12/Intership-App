@@ -9,9 +9,9 @@ namespace Intership.Application.Queries.GetUserById
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public GetUserByIdQueryHandler(IIntershipRepository repository)
+        public GetUserByIdQueryHandler(IUserRepository repository)
         {
             _repository = repository;
         }

@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Intership.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Intership.Infrastructure.Identity;
 
 namespace Intership.Infrastructure.Data
 {
-    public class IntershipDbContext : DbContext
+    public class IntershipDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public IntershipDbContext(DbContextOptions<IntershipDbContext> options)
             : base(options)
@@ -34,6 +37,10 @@ namespace Intership.Infrastructure.Data
                 .HasOne(irs => irs.RecruitmentSession)
                 .WithMany(rs => rs.InternRecruitmentSessions)
                 .HasForeignKey(irs => irs.RecruitmentSessionId);
+
+            ////////////////
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Role>().ToTable("Roles");
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Intership.Application.Commands.CreateRecruitmentSession
 {
     public class CreateRecruitmentSessionCommandHandler : IRequestHandler<CreateRecruitmentSessionCommand, int>
     {
-        private readonly IIntershipRepository _repository;
+        private readonly IRecruitmentSessionRepository _repository;
 
-        public CreateRecruitmentSessionCommandHandler(IIntershipRepository repository)
+        public CreateRecruitmentSessionCommandHandler(IRecruitmentSessionRepository repository)
         {
             _repository = repository;
         }

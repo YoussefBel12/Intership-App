@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intership.Application.DTOs
-{
+
     namespace Intership.Application.DTOs
     {
         public class SummaryDto
@@ -16,4 +15,4 @@ namespace Intership.Application.DTOs
         }
     }
 
-}
+

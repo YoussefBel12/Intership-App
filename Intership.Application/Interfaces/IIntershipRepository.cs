@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Intership.Application.DTOs;
-using Intership.Application.DTOs.Intership.Application.DTOs;
+
 using Intership.Domain.Entities;
 
 namespace Intership.Application.Interfaces
 {
     public interface IIntershipRepository
     {
-        // Intern CRUD operations
+    /*    // Intern CRUD operations
         Task<Intern> GetInternByIdAsync(int id);
         Task<List<Intern>> GetAllInternsAsync();
         Task AddInternAsync(Intern intern);
@@ -42,15 +42,15 @@ namespace Intership.Application.Interfaces
         Task<List<User>> GetAllUsersAsync();
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);
-        Task DeleteUserAsync(int id);
+        Task DeleteUserAsync(int id); */
 
         // Summary method
         Task<SummaryDto> GetSummaryForCurrentYearAsync();
 
-        // Authentication methods
+     /*   // Authentication methods
         Task<User> AuthenticateAsync(string email, string password);
         Task<bool> ChangePasswordAsync(int userId, string newPassword);
 
-
+        */
     }
 }
