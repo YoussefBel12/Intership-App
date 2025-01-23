@@ -374,6 +374,7 @@ import CandidateForm from './components/CandidateForm';
 import Layout from './components/Layout';
 //import RecruitmentSession from './components/RecruitmentSession';
 import ChangePassword from './components/ChangePassword';
+import './App.css'
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -508,7 +509,7 @@ const App = () => {
     );
 
     return (
-        <div>
+        <div >
              <Layout>
                 <Routes>
                     {/* the two route send u to the change password link url */}

@@ -1,0 +1,12 @@
+/* App.css or a global CSS file */
+body, #root { /* Or a specific container div */
+    margin: 0; /* Remove default body margins */
+    min-height: 100vh; /* Ensure full viewport height */
+    background-image: url('/public/B.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: Fix the background during scrolling */
+    display: flex; /* Use flexbox for easy content positioning */
+    flex-direction: column; /* Stack content vertically */
+}
+

@@ -52,7 +52,7 @@ namespace Intership.API.Controllers
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) return NotFound(new { message = "User not found" });
-
+            
             // Update basic user information
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
