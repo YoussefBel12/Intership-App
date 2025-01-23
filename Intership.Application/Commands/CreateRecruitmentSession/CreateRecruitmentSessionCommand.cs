@@ -7,7 +7,8 @@ namespace Intership.Application.Commands.CreateRecruitmentSession
         public string Name { get; set; }
         public int Year { get; set; }
         public string Comment { get; set; }
-        public int SupervisorId { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateEnded { get; set; }
     }
 }
 

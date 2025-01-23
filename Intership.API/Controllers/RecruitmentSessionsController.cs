@@ -4,6 +4,8 @@ using Intership.Application.Commands.CreateRecruitmentSession;
 using Intership.Application.DTOs;
 using Intership.Application.Queries.GetAllRecruitmentSessions;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intership.API.Controllers
@@ -19,6 +21,7 @@ namespace Intership.API.Controllers
             _mediator = mediator;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<int>> CreateRecruitmentSession(CreateRecruitmentSessionCommand command)
         {
@@ -26,6 +29,7 @@ namespace Intership.API.Controllers
             return CreatedAtAction(nameof(GetAllRecruitmentSessions), new { id = sessionId }, sessionId);
         }
 
+        
         [HttpGet]
         public async Task<ActionResult<List<RecruitmentSessionDto>>> GetAllRecruitmentSessions()
         {

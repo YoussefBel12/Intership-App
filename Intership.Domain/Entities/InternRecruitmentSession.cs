@@ -1,4 +1,5 @@
-﻿namespace Intership.Domain.Entities
+﻿/*
+namespace Intership.Domain.Entities
 {
     public class InternRecruitmentSession
     {
@@ -8,3 +9,4 @@
         public RecruitmentSession RecruitmentSession { get; set; }
     }
 }
+*/

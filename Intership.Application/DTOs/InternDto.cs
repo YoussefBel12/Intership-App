@@ -11,6 +11,6 @@
         public int? SupervisorId { get; set; }
         public DateTime DateCreated { get; set; }
         public string SupervisorName { get; set; }
-        public List<RecruitmentSessionDto> RecruitmentSessions { get; set; }
+  //      public List<RecruitmentSessionDto> RecruitmentSessions { get; set; }
     }
 }

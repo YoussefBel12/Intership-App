@@ -23,7 +23,7 @@ namespace Intership.Application.Commands.CreateRecruitmentSession
                 Year = request.Year,
                 Comment = request.Comment,
                 DateCreated = DateTime.Now,
-                SupervisorId = request.SupervisorId
+                DateEnded = DateTime.Now.AddMonths(1)
             };
             await _repository.AddRecruitmentSessionAsync(session);
             return session.Id;

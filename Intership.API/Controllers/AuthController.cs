@@ -6,6 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Intership.Domain.Entities;
 
 namespace Intership.API.Controllers
 {
@@ -22,6 +25,7 @@ namespace Intership.API.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            
         }
 
         [HttpPost("register")]
@@ -36,14 +40,39 @@ namespace Intership.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
-
+           
             if (result.Succeeded)
             {
+                //the lines bellow huma likykhliwk t3ti l register ina role u can change f test
+
+                   await _userManager.AddToRoleAsync(user, "User");
+                //    await _userManager.AddToRoleAsync(user, "Admin");
+               // await _userManager.AddToRoleAsync(user, "Supervisor");
+
                 return Ok(new { message = "User registered successfully" });
             }
 
             return BadRequest(result.Errors);
         }
+      
+                [HttpPost("logout")]
+                public async Task<IActionResult> Logout()
+                {
+            var user = await _userManager.GetUserAsync(User); // This fetches the current user
+
+            if (user == null)
+            {
+                return Unauthorized(new { message = "User not found" });
+            }
+
+
+
+            await _signInManager.SignOutAsync(); // Signs out the user
+                    return Ok(new { message = "User logged out successfully" });
+                }
+                
+
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto model)
@@ -54,14 +83,24 @@ namespace Intership.API.Controllers
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
             if (!result.Succeeded) return Unauthorized(new { message = "Invalid credentials" });
 
-            // Generate JWT
-            var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+            // Generate JWT using configuration for SecretKey
+            //this line one bellow i addedd
+            var userRoles = await _userManager.GetRolesAsync(user); // Get user roles
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourVerySecretKeyThatIsAtLeast32BytesLong12345!"));  // Update the key
+           // var claims = new[]
+           var claims = new List<Claim>
+           
+           {
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+        new Claim(JwtRegisteredClaimNames.Email, user.Email),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
+
+            // i addedd this line below just one
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role))); // Add roles as claims!
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
@@ -69,18 +108,87 @@ namespace Intership.API.Controllers
                 audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds);
+                signingCredentials: creds
+            );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+           
 
-            return Ok(new { token = tokenString });
+
+
+
+            return Ok(new 
+            { token = tokenString ,
+                
+            });
+        
         }
 
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
+
+
+
+        [HttpGet("validate-token")]
+        //   [Authorize] // This ensures only authenticated users can access this endpoint
+        //   [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // Important!
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme , Roles = "admin , supervisor")]
+        public IActionResult ValidateToken()
         {
-            await _signInManager.SignOutAsync(); // Signs out the user
-            return Ok(new { message = "User logged out successfully" });
+            return Ok(new { message = "Token is valid" });
         }
+
+
+        [HttpPut("change-password")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // Ensure the user is authenticated
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
+        {
+            // Validate new password and confirmation password match
+            if (model.NewPassword != model.ConfirmNewPassword)
+            {
+                return BadRequest(new { message = "New password and confirmation password do not match." });
+            }
+
+            // Get the currently authenticated user
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized(new { message = "User not found or not authenticated." });
+            }
+
+            // Attempt to change the password
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                // Return the identity errors
+                return BadRequest(result.Errors);
+            }
+
+            return Ok(new { message = "Password changed successfully." });
+        }
+
+
+
+
+
+
+        [HttpGet("me")] // Correct endpoint for fetching user data
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // Protect with JWT authentication
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized(); // More appropriate to return 401 Unauthorized
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return Ok(new
+            {
+                email = user.Email,
+                role = roles.FirstOrDefault(),
+                firstName = user.FirstName, // Include other properties as needed
+                lastName = user.LastName,
+                id = user.Id
+            });
+        }
+
+
     }
 }

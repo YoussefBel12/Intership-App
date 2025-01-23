@@ -26,7 +26,7 @@ namespace Intership.Infrastructure.Data.Repository
         {
             //  return await _context.Candidates.ToListAsync();
             return await _context.Candidates
-         .Include(c => c.RecruitmentSession) // Eagerly load RecruitmentSession
+        .Include(c => c.RecruitmentSession) // Eagerly load RecruitmentSession
          .ToListAsync();
         }
 

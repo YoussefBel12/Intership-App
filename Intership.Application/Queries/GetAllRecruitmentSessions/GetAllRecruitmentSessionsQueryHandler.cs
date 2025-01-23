@@ -27,9 +27,18 @@ namespace Intership.Application.Queries.GetAllRecruitmentSessions
                 Year = session.Year,
                 Comment = session.Comment,
                 DateCreated = session.DateCreated,
-                SupervisorId = session.SupervisorId,
-                SupervisorName = session.SuperVisor.FirstName + " " + session.SuperVisor.LastName
+                DateEnded = session.DateEnded,
             }).ToList();
         }
     }
 }
+
+
+
+/*
+                SupervisorId = session.SupervisorId,
+                // SupervisorName = session.SuperVisor.FirstName + " " + session.SuperVisor.LastName
+                SupervisorName = session.SuperVisor != null
+            ? session.SuperVisor.FirstName + " " + session.SuperVisor.LastName
+            : "No Supervisor"  // You can return a default value if the supervisor is null
+*/

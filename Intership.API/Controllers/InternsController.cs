@@ -13,25 +13,25 @@ namespace Intership.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IntershipController : ControllerBase
+    public class InternsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public IntershipController(IMediator mediator)
+        public InternsController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         // Intern CRUD operations
 
-        [HttpGet("interns")]
+        [HttpGet()]
         public async Task<ActionResult<List<InternDto>>> GetAllInterns()
         {
             var interns = await _mediator.Send(new GetAllInternsQuery());
             return Ok(interns);
         }
 
-        [HttpGet("interns/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<InternDto>> GetInternById(int id)
         {
             var intern = await _mediator.Send(new GetInternByIdQuery { Id = id });
@@ -42,7 +42,7 @@ namespace Intership.API.Controllers
             return Ok(intern);
         }
 
-        [HttpPost("interns")]
+        [HttpPost()]
         public async Task<ActionResult<int>> CreateIntern(CreateInternCommand command)
         {
             var internId = await _mediator.Send(command);
@@ -53,7 +53,7 @@ namespace Intership.API.Controllers
             return CreatedAtAction(nameof(GetInternById), new { id = internId }, internId);
         }
 
-        [HttpPut("interns/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateIntern(int id, UpdateInternCommand command)
         {
             if (id != command.Id)
@@ -65,7 +65,7 @@ namespace Intership.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("interns/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIntern(int id)
         {
             await _mediator.Send(new DeleteInternCommand { Id = id });

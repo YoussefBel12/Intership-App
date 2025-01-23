@@ -4,7 +4,7 @@ using Intership.Application.Commands.AddCandidate;
 using Intership.Application.Commands.CreateRecruitmentSession;
 using Intership.Application.Commands.CreateUser;
 using Intership.Application.Interfaces;
-
+using Microsoft.AspNetCore.Cors;
 using Intership.Application.Queries.GetAllCandidates;
 using Intership.Application.Queries.GetAllRecruitmentSessions;
 using Intership.Application.Queries.GetSummary;
@@ -20,7 +20,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+// Add CORS services to the container
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // Frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+        //next line below i added from a video looks important
+              .AllowCredentials();
+    });
+});
+
+
+
 
 // Register DbContext
 builder.Services.AddDbContext<IntershipDbContext>(options =>
@@ -49,9 +68,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "https://localhost:7157",
-            ValidAudience = "your-app-users",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MyVerySecretKey12345!"))
+           // ValidIssuer = "https://localhost:7157",
+           ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+           // ValidAudience = "your-app-users",
+           ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MyVerySecretKey12345!"))
+            // chose one this one look like appsettin but i take from appsting directly in next line  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourVerySecretKeyThatIsAtLeast32BytesLong12345! "))
+         //   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]  )),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
         };
     });
 
@@ -64,6 +88,19 @@ builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRecruitmentSessionRepository, RecruitmentSessionRepository>();
 builder.Services.AddScoped<ISuperVisorRepository, SuperVisorRepository>();
+
+
+//cvfile thing repo and stuff
+// Get the uploads path from configuration
+var uploadsPath = builder.Configuration.GetValue<string>("UploadsPath");
+if (string.IsNullOrEmpty(uploadsPath))
+{
+    throw new InvalidOperationException("UploadsPath configuration is missing.");
+}
+builder.Services.AddScoped<IFileStorageService>(provider => new LocalFileStorageService(uploadsPath));
+
+
+
 
 // Register MediatR and scan for handlers in the Application assembly
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
@@ -84,7 +121,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
 ));
 
 builder.Services.AddControllers();
-builder.Services.AddControllersWithViews();  // Register MVC services for views
+//builder.Services.AddControllersWithViews();  // Register MVC services for views
 // Configure Swagger/OpenAPI to include JWT authentication
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -116,6 +153,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -125,12 +167,34 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // Serve React static files
+app.UseRouting();
+app.UseCors("AllowFrontend"); // Apply CORS policy
+app.UseAuthentication(); // Add Authentication middleware
+app.UseAuthorization(); // Add Authorization middleware
 
-app.UseAuthentication();  // Add Authentication middleware
-app.UseAuthorization();
+// React fallback middleware
+app.Use(async (context, next) =>
+{
+    if (!context.Request.Path.Value.StartsWith("/api") &&
+        !System.IO.Path.HasExtension(context.Request.Path.Value))
+    {
+        context.Request.Path = "/index.html";
+    }
 
+    await next();
+});
+
+
+
+
+
+
+
+app.UseStaticFiles(); // Ensure React files are served correctly
 app.MapControllers();
-
 app.Run();
+
+
+

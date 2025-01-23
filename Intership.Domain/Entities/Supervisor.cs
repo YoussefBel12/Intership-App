@@ -10,6 +10,6 @@ namespace Intership.Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public ICollection<Intern> Interns { get; set; }
-        public ICollection<RecruitmentSession> RecruitmentSessions { get; set; }
+ //       public ICollection<RecruitmentSession> RecruitmentSessions { get; set; }
     }
 }

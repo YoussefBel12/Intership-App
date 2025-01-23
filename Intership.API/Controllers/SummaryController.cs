@@ -4,6 +4,7 @@ using Intership.Application.DTOs;
 using Intership.Application.Interfaces;
 using Intership.Application.Queries.GetSummary;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,10 @@ namespace Intership.API.Controllers
             _mediator = mediator;
         }
         // // //
-        [Authorize]
+        //    [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
         // // //
-        [HttpGet("summary")]
+        [HttpGet]
         public async Task<ActionResult<SummaryDto>> GetSummary()
         {
             var summary = await _mediator.Send(new GetSummaryQuery());

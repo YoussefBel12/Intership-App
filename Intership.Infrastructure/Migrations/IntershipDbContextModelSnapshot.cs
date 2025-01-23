@@ -32,37 +32,43 @@ namespace Intership.Infrastructure.Migrations
 
                     b.Property<string>("CvFilePath")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Level")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("RecruitmentSessionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("School")
+                    b.Property<string>("RecruitmentSessionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -116,21 +122,6 @@ namespace Intership.Infrastructure.Migrations
                     b.ToTable("Interns");
                 });
 
-            modelBuilder.Entity("Intership.Domain.Entities.InternRecruitmentSession", b =>
-                {
-                    b.Property<int>("InternId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecruitmentSessionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InternId", "RecruitmentSessionId");
-
-                    b.HasIndex("RecruitmentSessionId");
-
-                    b.ToTable("InternRecruitmentSessions");
-                });
-
             modelBuilder.Entity("Intership.Domain.Entities.RecruitmentSession", b =>
                 {
                     b.Property<int>("Id")
@@ -146,19 +137,17 @@ namespace Intership.Infrastructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateEnded")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupervisorId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SupervisorId");
 
                     b.ToTable("RecruitmentSessions");
                 });
@@ -469,36 +458,6 @@ namespace Intership.Infrastructure.Migrations
                     b.Navigation("SuperVisor");
                 });
 
-            modelBuilder.Entity("Intership.Domain.Entities.InternRecruitmentSession", b =>
-                {
-                    b.HasOne("Intership.Domain.Entities.Intern", "Intern")
-                        .WithMany("InternRecruitmentSessions")
-                        .HasForeignKey("InternId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Intership.Domain.Entities.RecruitmentSession", "RecruitmentSession")
-                        .WithMany("InternRecruitmentSessions")
-                        .HasForeignKey("RecruitmentSessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Intern");
-
-                    b.Navigation("RecruitmentSession");
-                });
-
-            modelBuilder.Entity("Intership.Domain.Entities.RecruitmentSession", b =>
-                {
-                    b.HasOne("Intership.Domain.Entities.SuperVisor", "SuperVisor")
-                        .WithMany("RecruitmentSessions")
-                        .HasForeignKey("SupervisorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SuperVisor");
-                });
-
             modelBuilder.Entity("Intership.Domain.Entities.User", b =>
                 {
                     b.HasOne("Intership.Domain.Entities.Role", "Role")
@@ -561,16 +520,9 @@ namespace Intership.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Intership.Domain.Entities.Intern", b =>
-                {
-                    b.Navigation("InternRecruitmentSessions");
-                });
-
             modelBuilder.Entity("Intership.Domain.Entities.RecruitmentSession", b =>
                 {
                     b.Navigation("Candidates");
-
-                    b.Navigation("InternRecruitmentSessions");
                 });
 
             modelBuilder.Entity("Intership.Domain.Entities.Role", b =>
@@ -581,8 +533,6 @@ namespace Intership.Infrastructure.Migrations
             modelBuilder.Entity("Intership.Domain.Entities.SuperVisor", b =>
                 {
                     b.Navigation("Interns");
-
-                    b.Navigation("RecruitmentSessions");
                 });
 #pragma warning restore 612, 618
         }

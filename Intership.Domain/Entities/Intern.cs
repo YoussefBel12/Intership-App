@@ -11,7 +11,12 @@
         public string Level { get; set; }
         public int? SupervisorId { get; set; }
         public SuperVisor SuperVisor { get; set; }
-        public ICollection<InternRecruitmentSession> InternRecruitmentSessions { get; set; }
+  //      public ICollection<InternRecruitmentSession> InternRecruitmentSessions { get; set; }
         public DateTime DateCreated { get; set; } // New property
+
+
+      
     }
+
 }
+
