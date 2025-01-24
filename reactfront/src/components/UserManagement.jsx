@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import config from "../config";
-
+import { Link } from 'react-router-dom'; // Import Link here!
 const UserManagement = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -90,9 +90,14 @@ const UserManagement = () => {
     }, []);
 
     return (
+
+     
+
         <div className="container my-5">
             <h1 className="text-center text-primary">User Management</h1>
             {error && <div className="alert alert-danger">{error}</div>}
+
+            
 
             <form className="p-4 shadow-lg rounded bg-light" onSubmit={handleFormSubmit}>
                 <h2 className="text-secondary">{selectedUser ? "Modify User" : "Add User"}</h2>
@@ -127,18 +132,17 @@ const UserManagement = () => {
                             required
                         />
                     </div>
-                    {!selectedUser && (
-                        <div className="col-md-6">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                                value={form.password}
-                                onChange={(e) => setForm({ ...form, password: e.target.value })}
-                                required
-                            />
-                        </div>
-                    )}
+                    {/* Password field will show up for both adding and modifying users */}
+                    <div className="col-md-6">
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Password"
+                            value={form.password}
+                            onChange={(e) => setForm({ ...form, password: e.target.value })}
+                            required={!selectedUser}  // Make it required only when adding a user
+                        />
+                    </div>
                     <div className="col-md-6">
                         <input
                             type="text"
@@ -159,6 +163,10 @@ const UserManagement = () => {
                         </button>
                     )}
                 </div>
+                
+                <Link to="/home" className="btn btn-secondary">Back to Home</Link>
+
+
             </form>
 
             <h2 className="text-secondary mt-5">User List</h2>
@@ -199,7 +207,7 @@ const UserManagement = () => {
                                                 lastName: user.lastName,
                                                 email: user.email,
                                                 role: user.roles[0] || "",
-                                                password: "",
+                                                password: "", // Do not show the password when modifying a user
                                             });
                                         }}
                                     >
@@ -216,3 +224,4 @@ const UserManagement = () => {
 };
 
 export default UserManagement;
+

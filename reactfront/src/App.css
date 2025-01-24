@@ -2,7 +2,7 @@
 body, #root { /* Or a specific container div */
     margin: 0; /* Remove default body margins */
     min-height: 100vh; /* Ensure full viewport height */
-    background-image: url('/public/B.jpg');
+    background-image: url('/B.jpg');
     background-size: cover; /* Cover the entire viewport */
     background-repeat: no-repeat;
     background-attachment: fixed; /* Optional: Fix the background during scrolling */
