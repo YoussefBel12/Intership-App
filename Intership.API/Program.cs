@@ -2,13 +2,13 @@ using System.Reflection;
 using System.Text;
 using Intership.Application.Commands.AddCandidate;
 using Intership.Application.Commands.CreateRecruitmentSession;
-using Intership.Application.Commands.CreateUser;
+//using Intership.Application.Commands.CreateUser;
 using Intership.Application.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Intership.Application.Queries.GetAllCandidates;
 using Intership.Application.Queries.GetAllRecruitmentSessions;
 using Intership.Application.Queries.GetSummary;
-using Intership.Application.Queries.GetUserById;
+//using Intership.Application.Queries.GetUserById;
 using Intership.Domain.Entities;
 using Intership.Infrastructure.Data;
 using Intership.Infrastructure.Data.Repository;
@@ -85,7 +85,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<IIntershipRepository, IntershipRepository>();
 builder.Services.AddScoped<IInternRepository, InternRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRecruitmentSessionRepository, RecruitmentSessionRepository>();
 builder.Services.AddScoped<ISuperVisorRepository, SuperVisorRepository>();
 
@@ -106,11 +106,11 @@ builder.Services.AddScoped<IFileStorageService>(provider => new LocalFileStorage
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
    Assembly.GetAssembly(typeof(Intership.Application.Commands.CreateIntern.CreateInternCommandHandler))));
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
-    Assembly.GetAssembly(typeof(CreateUserCommandHandler))));
+/*builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+    Assembly.GetAssembly(typeof(CreateUserCommandHandler))));*/
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
-    Assembly.GetAssembly(typeof(GetUserByIdQueryHandler))));
+/*builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+    Assembly.GetAssembly(typeof(GetUserByIdQueryHandler))));*/
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     Assembly.GetAssembly(typeof(GetSummaryQueryHandler)),

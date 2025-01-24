@@ -13,13 +13,12 @@ namespace Intership.Infrastructure.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
+       
         public DbSet<RecruitmentSession> RecruitmentSessions { get; set; }
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Intern> Interns { get; set; }
         public DbSet<SuperVisor> SuperVisors { get; set; }
-     //   public DbSet<InternRecruitmentSession> InternRecruitmentSessions { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,8 +48,8 @@ namespace Intership.Infrastructure.Data
             .HasForeignKey(irs => irs.RecruitmentSessionId);
         */
         ////////////////
-        modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Role>().ToTable("Roles");
+     //   modelBuilder.Entity<User>().ToTable("Users");
+       //     modelBuilder.Entity<Role>().ToTable("Roles");
 
         }
     }

@@ -132,8 +132,20 @@ const Home = ({
         {userData && (
             <div className="d-flex justify-content-between align-items-center mb-4">
                 {/* Other Buttons */}
+
                 <Link to="/ChangePassword" className="btn btn-warning">Change Password</Link>
-              
+               
+            </div>
+        )}
+
+
+
+        {/* This one bellow is the button in app jsx i made the link and send u to usermanagement admin only */}
+        {userData?.role === 'admin' && (
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                {/* Other Buttons */}
+                <Link to="/UserManagement" className="btn btn-warning">User Management</Link>
+
             </div>
         )}
 

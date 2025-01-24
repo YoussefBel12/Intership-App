@@ -375,7 +375,7 @@ import Layout from './components/Layout';
 //import RecruitmentSession from './components/RecruitmentSession';
 import ChangePassword from './components/ChangePassword';
 import './App.css'
-
+import UserManagement from './components/UserManagement';
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
@@ -517,8 +517,8 @@ const App = () => {
                     <Route path="/ChangePassword" element={isLoggedIn ? <ChangePassword /> : <Navigate to="/login" />} />
                     <Route path="/" element={<Navigate to="/login" />} />
 
-
-
+                     <Route path="/UserManagement" element={<UserManagement />} /> 
+                
 
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home

@@ -1,6 +1,6 @@
 ﻿using Intership.Application.DTOs;
-using Intership.Application.Queries.GetAllUsers;
-using Intership.Application.Queries.GetUserById;
+//using Intership.Application.Queries.GetAllUsers;
+//using Intership.Application.Queries.GetUserById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
