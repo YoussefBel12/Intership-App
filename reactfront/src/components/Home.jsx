@@ -146,6 +146,7 @@ const Home = ({
                 {/* Other Buttons */}
                 <Link to="/UserManagement" className="btn btn-warning">User Management</Link>
 
+                <Link to="/recruitmentsessions" className="btn btn-secondary">Manage Recruitment Sessions</Link>
             </div>
         )}
 

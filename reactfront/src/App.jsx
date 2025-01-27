@@ -376,6 +376,9 @@ import Layout from './components/Layout';
 import ChangePassword from './components/ChangePassword';
 import './App.css'
 import UserManagement from './components/UserManagement';
+import RecruitmentSessions from './components/RecruitmentSessions';
+
+
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
@@ -518,7 +521,7 @@ const App = () => {
                     <Route path="/" element={<Navigate to="/login" />} />
 
                      <Route path="/UserManagement" element={<UserManagement />} /> 
-                
+                    <Route path="/recruitmentsessions" element={isLoggedIn && userData?.role === 'admin' ? <RecruitmentSessions /> : <Navigate to="/login" />} />
 
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home
