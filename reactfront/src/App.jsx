@@ -504,7 +504,7 @@ const App = () => {
         <div>
             <h1>Please sign in</h1>
             <Login handleLogin={handleLogin} error={error} setError={setError} />
-            <Registration />
+            {/*        <Registration />   */}
         </div>
     );
 

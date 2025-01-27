@@ -1,13 +1,13 @@
 
 import PropTypes from 'prop-types';
 import Login from './Login';
-import Registration from './Registration';
+ //import Registration from './Registration';
 
 const AuthPage = ({ handleLogin, error, setError }) => (
     <div>
         <h1>Please sign in</h1> {/* Added a heading */}
         <Login handleLogin={handleLogin} error={error} setError={setError} />
-        <Registration />
+        {/*      <Registration />  */}
     </div>
 );
 

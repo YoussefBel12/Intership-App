@@ -65,6 +65,7 @@ export default Login;  */
 //everything up same as this but without bootstrap
 import  { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Login = ({ handleLogin, error, setError }) => {
     const [username, setUsername] = useState('');
@@ -135,6 +136,10 @@ const Login = ({ handleLogin, error, setError }) => {
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>
                     </form>
+                    <div className="text-center mt-3">
+                        <Link to="/register" className="btn btn-link">Dont have an account? Register</Link>
+                    </div>
+
                 </div>
             </div>
         </div>

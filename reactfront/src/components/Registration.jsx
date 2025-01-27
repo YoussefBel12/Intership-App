@@ -116,6 +116,7 @@ export default Registration;  */
 import  { useState } from 'react';
 import axios from 'axios';
 import config from '../config';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -192,6 +193,11 @@ const Registration = () => {
                             <button type="submit" className="btn btn-primary">Register</button>
                         </div>
                     </form>
+
+                    <div className="text-center mt-3">
+                        <Link to="/login" className="btn btn-link">Already have an account? Login</Link>
+                    </div>
+
                 </div>
             </div>
         </div>
