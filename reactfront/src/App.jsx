@@ -543,6 +543,7 @@ const App = () => {
 
             {isLoggedIn && userData?.role === 'candidate' && <CandidateForm />}
         </div>
+       
     );
 };
 

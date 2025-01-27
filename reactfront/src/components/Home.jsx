@@ -94,6 +94,7 @@ import PropTypes from 'prop-types';
 import CandidateForm from './CandidateForm';
 import { Link } from 'react-router-dom'; // Import Link here!
 //import ChangePassword from './ChangePassword';
+import Dashboard from '../Dashboard';
 
 
 const Home = ({
@@ -138,6 +139,10 @@ const Home = ({
             </div>
         )}
 
+
+
+        {userData && (userData.role === 'admin' || userData.role === 'user') && <Dashboard />}
+        
 
 
         {/* This one bellow is the button in app jsx i made the link and send u to usermanagement admin only */}

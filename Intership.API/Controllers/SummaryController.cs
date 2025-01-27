@@ -22,7 +22,7 @@ namespace Intership.API.Controllers
         }
         // // //
         //    [Authorize]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin,user")]
         // // //
         [HttpGet]
         public async Task<ActionResult<SummaryDto>> GetSummary()
