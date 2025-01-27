@@ -107,7 +107,8 @@ namespace Intership.API.Controllers
                 issuer: _configuration["JwtSettings:Issuer"],
                 audience: _configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+             //   expires: DateTime.UtcNow.AddHours(1),
+             expires: model.RememberMe ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddHours(1), // Set expiration based on RememberMe
                 signingCredentials: creds
             );
 

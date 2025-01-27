@@ -69,6 +69,7 @@ import PropTypes from 'prop-types';
 const Login = ({ handleLogin, error, setError }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false); // Add this line
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -76,7 +77,9 @@ const Login = ({ handleLogin, error, setError }) => {
             setError('Please enter both username and password.');
             return;
         }
-        handleLogin(username, password);
+         handleLogin(username, password, rememberMe); // Pass rememberMe to handleLogin
+
+        
     };
 
     return (
@@ -112,6 +115,22 @@ const Login = ({ handleLogin, error, setError }) => {
                                 required
                             />
                         </div>
+
+
+                        {/*i added this for remember me dont forget to delete up delete things*/ }
+                        <div className="mb-3 form-check"> {/* Add this block */}
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="rememberMe"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                            />
+                            <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
+                        </div>
+
+
+
                         <div className="d-grid"> {/* Full width button */}
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>

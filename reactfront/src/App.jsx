@@ -400,9 +400,9 @@ const App = () => {
         }
     }, [isLoggedIn, userData]);
 
-    const handleLogin = async (username, password) => {
+    const handleLogin = async (username, password, rememberMe) => {
         try {
-            const response = await axios.post(`${config.baseApiUrl}/api/Auth/login`, { email: username, password });
+            const response = await axios.post(`${config.baseApiUrl}/api/Auth/login`, { email: username, password: password, rememberMe: rememberMe  });
             localStorage.setItem('token', response.data.token);
             setIsLoggedIn(true);
             fetchUserData();
