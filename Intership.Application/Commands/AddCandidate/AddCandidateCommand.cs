@@ -19,7 +19,7 @@ namespace Intership.Application.Commands.AddCandidate
         public string Level { get; set; }
         public string CvFilePath { get; set; }
        public int RecruitmentSessionId { get; set; }
-        public string RecruitmentSessionName { get; set; }
+    //    public string RecruitmentSessionName { get; set; }
         //this one bellow is new
         public IFormFile CvFile { get; set; } // Use IFormFile for file uploads
 

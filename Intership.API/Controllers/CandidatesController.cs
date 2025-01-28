@@ -105,7 +105,7 @@ namespace Intership.API.Controllers
                 School = command.School,
                 Level = command.Level,
                 RecruitmentSessionId = command.RecruitmentSessionId,
-                RecruitmentSessionName=command.RecruitmentSessionName,
+         //       RecruitmentSessionName=command.RecruitmentSessionName,
                 CvFilePath = filePath // Pass the filePath (or null)
             };
 

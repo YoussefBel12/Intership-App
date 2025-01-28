@@ -155,9 +155,9 @@ const CandidateForm = () => {
         school: '',
         level: '',
         cvFile: null,
-        cvFilePath: '',
+        cvFilePath: 'huh',
         recruitmentSessionId: 4,
-        recruitmentSessionName: 'tomi',
+      
     });
     const [submitError, setSubmitError] = useState(null);
     const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -204,7 +204,7 @@ const CandidateForm = () => {
                 school: '',
                 level: '',
                 cvFile: null,
-                cvFilePath: '',
+                cvFilePath: 'huh',
                 recruitmentSessionId: 4,
             });
         } catch (error) {
@@ -272,10 +272,10 @@ const CandidateForm = () => {
                             <label htmlFor="cvFile" className="form-label">CV File</label>
                             <input type="file" id="cvFile" name="cvFile" onChange={handleFileChange} className="form-control" />
                         </div>
-                        <div className="mb-3">
+                        {/*     <div className="mb-3">
                             <label htmlFor="cvFilePath" className="form-label">Custom CV File Path (Optional)</label>
                             <input type="text" id="cvFilePath" name="cvFilePath" placeholder="Custom CV File Path" value={formData.cvFilePath} onChange={handleChange} className="form-control" />
-                        </div>
+                        </div>  */}
                         <div className="d-grid">
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </div>

@@ -33,7 +33,7 @@ namespace Intership.Application.Queries.GetAllCandidates
                     Level = candidate.Level,
                     CvFilePath = candidate.CvFilePath,
                     RecruitmentSessionId = candidate.RecruitmentSessionId,
-                    RecruitmentSessionName = candidate.RecruitmentSessionName,
+           //         RecruitmentSessionName = candidate.RecruitmentSessionName,
                     DateCreated = candidate.DateCreated
                 });
             }

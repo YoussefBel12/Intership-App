@@ -46,7 +46,7 @@ namespace Intership.Application.Commands.AddCandidate
                 Level = request.Level,
                 CvFilePath = request.CvFilePath,
                 RecruitmentSessionId = request.RecruitmentSessionId,
-                RecruitmentSessionName= request.RecruitmentSessionName,
+         //       RecruitmentSessionName= request.RecruitmentSessionName,
                 DateCreated = DateTime.Now
             };
             await _repository.AddCandidateAsync(candidate);

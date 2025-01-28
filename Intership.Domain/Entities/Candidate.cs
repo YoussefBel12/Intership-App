@@ -53,7 +53,7 @@ namespace Intership.Domain.Entities
 
         // Navigation Property
         public RecruitmentSession RecruitmentSession { get; set; }
-        public string RecruitmentSessionName { get; set; }
+  //      public string RecruitmentSessionName { get; set; }
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow; // Set default value
     }

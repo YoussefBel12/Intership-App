@@ -11,9 +11,8 @@ namespace Intership.Domain.Entities
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateEnded { get; set; }
- //       public int SupervisorId { get; set; }
-    //    public SuperVisor SuperVisor { get; set; }
+
      public ICollection<Candidate> Candidates { get; set; }
- //       public ICollection<InternRecruitmentSession> InternRecruitmentSessions { get; set; }
+
     }
 }

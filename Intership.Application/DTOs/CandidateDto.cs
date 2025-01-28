@@ -11,7 +11,7 @@
         public string Level { get; set; }
         public string CvFilePath { get; set; }
        public int RecruitmentSessionId { get; set; }
-        public string RecruitmentSessionName { get; set; }
+  //      public string RecruitmentSessionName { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }
