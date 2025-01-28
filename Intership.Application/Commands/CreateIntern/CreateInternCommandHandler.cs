@@ -36,7 +36,7 @@ namespace Intership.Application.Commands.CreateIntern
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
-                Password = request.Password,
+                
                 School = request.School,
                 Level = request.Level,
                 SupervisorId = request.SupervisorId // Attach the SupervisorId to the intern

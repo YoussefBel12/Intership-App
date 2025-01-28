@@ -26,7 +26,7 @@ namespace Intership.Application.Commands.UpdateIntern
             intern.FirstName = request.FirstName;
             intern.LastName = request.LastName;
             intern.Email = request.Email;
-            intern.Password = request.Password;
+          
             intern.School = request.School;
             intern.Level = request.Level;
             intern.SupervisorId = request.SupervisorId;

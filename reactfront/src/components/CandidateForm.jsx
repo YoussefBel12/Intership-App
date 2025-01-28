@@ -266,7 +266,7 @@ const CandidateForm = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="level" className="form-label">Level</label>
-                            <input type="text" id="level" name="level" placeholder="Level" value={formData.level} onChange={handleChange} required className="form-control" />
+                            <input type="text" id="level" name="level" placeholder="Bac+" value={formData.level} onChange={handleChange} required className="form-control" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="cvFile" className="form-label">CV File</label>

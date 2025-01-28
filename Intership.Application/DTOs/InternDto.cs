@@ -10,7 +10,7 @@
         public string Level { get; set; }
         public int? SupervisorId { get; set; }
         public DateTime DateCreated { get; set; }
-        public string SupervisorName { get; set; }
+    
   
     }
 }
