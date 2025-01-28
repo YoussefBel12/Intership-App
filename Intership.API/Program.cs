@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Intership.Application.DTOs;
+using MediatR;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -88,6 +90,9 @@ builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRecruitmentSessionRepository, RecruitmentSessionRepository>();
 builder.Services.AddScoped<ISuperVisorRepository, SuperVisorRepository>();
+
+builder.Services.AddScoped<IRequestHandler<GetActiveRecruitmentSessionQuery, RecruitmentSessionDto>, GetActiveRecruitmentSessionQueryHandler>();
+
 
 
 //cvfile thing repo and stuff

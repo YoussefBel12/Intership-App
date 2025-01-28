@@ -10,8 +10,7 @@
 
         public DateTime DateEnded { get; set; }
 
-        //       public int SupervisorId { get; set; }
-        //     public string SupervisorName { get; set; }
+        
 
     }
 }

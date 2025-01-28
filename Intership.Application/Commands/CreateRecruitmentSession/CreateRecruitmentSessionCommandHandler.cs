@@ -22,8 +22,12 @@ namespace Intership.Application.Commands.CreateRecruitmentSession
                 Name = request.Name,
                 Year = request.Year,
                 Comment = request.Comment,
-                DateCreated = DateTime.Now,
-                DateEnded = DateTime.Now.AddMonths(1)
+                //    DateCreated = DateTime.Now,
+                //  DateEnded = DateTime.Now.AddMonths(1)
+                DateCreated = DateTime.UtcNow, // Use UTC time
+                DateEnded = DateTime.UtcNow.AddMonths(1) // Use UTC time
+
+
             };
             await _repository.AddRecruitmentSessionAsync(session);
             return session.Id;

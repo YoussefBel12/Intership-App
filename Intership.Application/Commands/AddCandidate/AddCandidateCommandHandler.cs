@@ -10,11 +10,13 @@ namespace Intership.Application.Commands.AddCandidate
     public class AddCandidateCommandHandler : IRequestHandler<AddCandidateCommand, int>
     {
         private readonly ICandidateRepository  _repository;
+       
         //this one is added
         private readonly IFileStorageService _fileStorageService; // File storage service
 
-        public AddCandidateCommandHandler(ICandidateRepository repository , IFileStorageService fileStorageService)
+        public AddCandidateCommandHandler(ICandidateRepository repository , IFileStorageService fileStorageService )
         {
+        
             _repository = repository;
             //same here
             _fileStorageService = fileStorageService;
@@ -46,7 +48,7 @@ namespace Intership.Application.Commands.AddCandidate
                 Level = request.Level,
                 CvFilePath = request.CvFilePath,
                 RecruitmentSessionId = request.RecruitmentSessionId,
-         //       RecruitmentSessionName= request.RecruitmentSessionName,
+           
                 DateCreated = DateTime.Now
             };
             await _repository.AddCandidateAsync(candidate);

@@ -15,5 +15,13 @@ namespace Intership.Application.Interfaces
         Task AddRecruitmentSessionAsync(RecruitmentSession recruitmentSession);
         Task UpdateRecruitmentSessionAsync(RecruitmentSession recruitmentSession);
         Task DeleteRecruitmentSessionAsync(int id);
+
+
+
+
+        // New method to get active recruitment session
+        Task<RecruitmentSession?> GetActiveRecruitmentSessionAsync(DateTime now);
+
     }
+
 }

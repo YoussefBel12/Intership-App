@@ -5,6 +5,7 @@ using Intership.Application.Commands.AddCandidate;
 using Intership.Application.Commands.DeleteCandidate;
 using Intership.Application.DTOs;
 using Intership.Application.Queries.GetAllCandidates;
+using Intership.Application.Queries.GetAllRecruitmentSessions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -24,39 +25,7 @@ namespace Intership.API.Controllers
             _environment = environment;
         }
 
-        /*    [HttpPost]
-            public async Task<ActionResult<int>> AddCandidate(AddCandidateCommand command)
-            {
-                var candidateId = await _mediator.Send(command);
-                return CreatedAtAction(nameof(GetAllCandidates), new { id = candidateId }, candidateId);
-            }
-        */
-
-
-        /* this http post is the real deal
-         [HttpPost]
-         public async Task<ActionResult<int>> AddCandidate([FromForm] AddCandidateCommand command) // Use [FromForm]
-         {
-             if (command.CvFile != null && command.CvFile.Length > 0)
-             {
-                 // Handle file upload (save to disk or cloud storage)
-                 string fileName = Path.GetFileName(command.CvFile.FileName);
-                 string filePath = Path.Combine(Directory.GetCurrentDirectory(), "uploads", fileName); // Example path
-                 using (var stream = new FileStream(filePath, FileMode.Create))
-                 {
-                     await command.CvFile.CopyToAsync(stream);
-                 }
-                command.CvFilePath = filePath; // Set the file path in the command
-             }
-
-             if (!ModelState.IsValid)
-             {
-                 return BadRequest(ModelState);
-             }
-             var candidateId = await _mediator.Send(command);
-             return CreatedAtAction(nameof(GetAllCandidates), new { id = candidateId }, candidateId);
-         }
-       */
+        /*
         [HttpPost]
         public async Task<ActionResult<int>> AddCandidate([FromForm] AddCandidateCommand command)
         {
@@ -96,17 +65,18 @@ namespace Intership.API.Controllers
                 }
             }
 
-            // 4. Create the command for MediatR (or your data access logic)
-            var addCandidateCommand = new AddCandidateCommand
+
+                // 4. Create the command for MediatR (or your data access logic)
+                var addCandidateCommand = new AddCandidateCommand
             {
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 Email = command.Email,
                 School = command.School,
                 Level = command.Level,
-                RecruitmentSessionId = command.RecruitmentSessionId,
-         //       RecruitmentSessionName=command.RecruitmentSessionName,
-                CvFilePath = filePath // Pass the filePath (or null)
+                       RecruitmentSessionId = command.RecruitmentSessionId,
+                  
+                    CvFilePath = filePath // Pass the filePath (or null)
             };
 
             try
@@ -121,6 +91,75 @@ namespace Intership.API.Controllers
                 return StatusCode(500, "Error creating the candidate.");
             }
         }
+
+        */
+
+
+        //i changed the HTTP thing for now 
+        [HttpPost]
+        public async Task<ActionResult<int>> AddCandidate([FromForm] AddCandidateCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Get the active recruitment session
+            var activeSession = await _mediator.Send(new GetActiveRecruitmentSessionQuery());
+
+            if (activeSession == null)
+            {
+                return BadRequest("No active recruitment session found.");
+            }
+
+            string filePath = null;
+
+            if (command.CvFile != null && command.CvFile.Length > 0)
+            {
+                try
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(command.CvFile.FileName);
+                    string uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "candidate_cvs");
+                    Directory.CreateDirectory(uploadsFolder);
+                    filePath = Path.Combine(uploadsFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await command.CvFile.CopyToAsync(stream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, "Error saving the CV file.");
+                }
+            }
+
+            var addCandidateCommand = new AddCandidateCommand
+            {
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                School = command.School,
+                Level = command.Level,
+                RecruitmentSessionId = activeSession.Id, // Use the active session ID
+
+                CvFilePath = filePath
+            };
+
+            try
+            {
+                var candidateId = await _mediator.Send(addCandidateCommand);
+                return CreatedAtAction(nameof(GetAllCandidates), new { id = candidateId }, candidateId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Error creating the candidate.");
+            }
+        }
+
+
+
+
 
 
 

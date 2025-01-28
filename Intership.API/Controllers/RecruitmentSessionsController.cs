@@ -36,5 +36,23 @@ namespace Intership.API.Controllers
             var sessions = await _mediator.Send(new GetAllRecruitmentSessionsQuery());
             return Ok(sessions);
         }
+
+
+        //new endpoint for active sessions i also made the get query in queries
+        // New endpoint to get the active recruitment session
+        [HttpGet("active")]
+        public async Task<ActionResult<RecruitmentSessionDto>> GetActiveRecruitmentSession()
+        {
+            var activeSession = await _mediator.Send(new GetActiveRecruitmentSessionQuery());
+
+            if (activeSession == null)
+            {
+                return NotFound("No active recruitment session found.");
+            }
+
+            return Ok(activeSession);
+        }
+
+
     }
 }

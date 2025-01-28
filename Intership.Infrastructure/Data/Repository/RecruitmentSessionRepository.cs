@@ -49,5 +49,32 @@ namespace Intership.Infrastructure.Data.Repository
             }
         }
 
+
+
+        // Implement the method to get the active recruitment session
+        public async Task<RecruitmentSession?> GetActiveRecruitmentSessionAsync(DateTime now)
+        {
+            var utcNow = now.ToUniversalTime(); // Ensure we're comparing using UTC time
+            Console.WriteLine($"Current UTC Time: {utcNow}");
+
+            var activeSession = await _context.RecruitmentSessions
+                .Where(rs => rs.DateCreated <= utcNow && rs.DateEnded >= utcNow)
+                .OrderByDescending(rs => rs.DateCreated)
+                .FirstOrDefaultAsync();
+
+            if (activeSession != null)
+            {
+                Console.WriteLine($"Active Session Found: {activeSession.Name}, DateCreated: {activeSession.DateCreated}, DateEnded: {activeSession.DateEnded}");
+            }
+            else
+            {
+                Console.WriteLine("No active recruitment session found.");
+            }
+
+            return activeSession;
+        }
+
+
+
     }
 }
