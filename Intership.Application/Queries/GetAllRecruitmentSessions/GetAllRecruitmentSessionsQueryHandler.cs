@@ -35,10 +35,3 @@ namespace Intership.Application.Queries.GetAllRecruitmentSessions
 
 
 
-/*
-                SupervisorId = session.SupervisorId,
-                // SupervisorName = session.SuperVisor.FirstName + " " + session.SuperVisor.LastName
-                SupervisorName = session.SuperVisor != null
-            ? session.SuperVisor.FirstName + " " + session.SuperVisor.LastName
-            : "No Supervisor"  // You can return a default value if the supervisor is null
-*/

@@ -32,24 +32,32 @@ namespace Intership.Infrastructure.Data
                 .WithMany(rs => rs.Candidates) // A RecruitmentSession has many Candidates
                 .HasForeignKey(c => c.RecruitmentSessionId) // Foreign key in Candidate table
                 .OnDelete(DeleteBehavior.Cascade); // Optional: Define cascade delete behavior
-        
-        /*
-        modelBuilder.Entity<InternRecruitmentSession>()
-            .HasKey(irs => new { irs.InternId, irs.RecruitmentSessionId });
 
-        modelBuilder.Entity<InternRecruitmentSession>()
-            .HasOne(irs => irs.Intern)
-            .WithMany(i => i.InternRecruitmentSessions)
-            .HasForeignKey(irs => irs.InternId);
+            // relation btwn intern and supervisor
+            modelBuilder.Entity<Intern>()
+      .HasOne(i => i.SuperVisor)   // Intern has one Supervisor
+      .WithMany(s => s.Interns)     // Supervisor has many Interns
+      .HasForeignKey(i => i.SupervisorId) // Foreign key in Intern table
+      .OnDelete(DeleteBehavior.SetNull); // If Supervisor is deleted, set SupervisorId to NULL
 
-        modelBuilder.Entity<InternRecruitmentSession>()
-            .HasOne(irs => irs.RecruitmentSession)
-            .WithMany(rs => rs.InternRecruitmentSessions)
-            .HasForeignKey(irs => irs.RecruitmentSessionId);
-        */
-        ////////////////
-     //   modelBuilder.Entity<User>().ToTable("Users");
-       //     modelBuilder.Entity<Role>().ToTable("Roles");
+
+            /*
+            modelBuilder.Entity<InternRecruitmentSession>()
+                .HasKey(irs => new { irs.InternId, irs.RecruitmentSessionId });
+
+            modelBuilder.Entity<InternRecruitmentSession>()
+                .HasOne(irs => irs.Intern)
+                .WithMany(i => i.InternRecruitmentSessions)
+                .HasForeignKey(irs => irs.InternId);
+
+            modelBuilder.Entity<InternRecruitmentSession>()
+                .HasOne(irs => irs.RecruitmentSession)
+                .WithMany(rs => rs.InternRecruitmentSessions)
+                .HasForeignKey(irs => irs.RecruitmentSessionId);
+            */
+            ////////////////
+            //   modelBuilder.Entity<User>().ToTable("Users");
+            //     modelBuilder.Entity<Role>().ToTable("Roles");
 
         }
     }

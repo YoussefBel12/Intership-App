@@ -43,7 +43,7 @@ namespace Intership.Application.Commands.AddCandidate
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
-        //        Password = request.Password,
+        
                 School = request.School,
                 Level = request.Level,
                 CvFilePath = request.CvFilePath,

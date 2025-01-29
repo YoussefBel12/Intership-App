@@ -25,77 +25,7 @@ namespace Intership.API.Controllers
             _environment = environment;
         }
 
-        /*
-        [HttpPost]
-        public async Task<ActionResult<int>> AddCandidate([FromForm] AddCandidateCommand command)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            string filePath = null; // Initialize to null
-
-            if (command.CvFile != null && command.CvFile.Length > 0)
-            {
-                try
-                {
-                    // 1. Generate a unique and safe filename
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(command.CvFile.FileName);
-
-                    // 2. Determine the correct upload path (important!)
-                    string uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "candidate_cvs"); // Use WebRootPath
-
-                    // Create the directory if it doesn't exist
-                    Directory.CreateDirectory(uploadsFolder);
-
-                    filePath = Path.Combine(uploadsFolder, fileName);
-
-                    // 3. Save the file
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await command.CvFile.CopyToAsync(stream);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Log the exception! Very important for debugging
-                    Console.WriteLine($"Error saving file: {ex}");
-                    return StatusCode(500, "Error saving the CV file."); // Return a 500 error
-                }
-            }
-
-
-                // 4. Create the command for MediatR (or your data access logic)
-                var addCandidateCommand = new AddCandidateCommand
-            {
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                Email = command.Email,
-                School = command.School,
-                Level = command.Level,
-                       RecruitmentSessionId = command.RecruitmentSessionId,
-                  
-                    CvFilePath = filePath // Pass the filePath (or null)
-            };
-
-            try
-            {
-                var candidateId = await _mediator.Send(addCandidateCommand);
-                return CreatedAtAction(nameof(GetAllCandidates), new { id = candidateId }, candidateId);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception!
-                Console.WriteLine($"Error creating candidate: {ex}");
-                return StatusCode(500, "Error creating the candidate.");
-            }
-        }
-
-        */
-
-
-        //i changed the HTTP thing for now 
+      
         [HttpPost]
         public async Task<ActionResult<int>> AddCandidate([FromForm] AddCandidateCommand command)
         {

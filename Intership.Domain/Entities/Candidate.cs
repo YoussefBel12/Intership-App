@@ -2,21 +2,7 @@
 
 namespace Intership.Domain.Entities
 {
-    /*   public class Candidate
-       {
-           public int Id { get; set; }
-           public string FirstName { get; set; }
-           public string LastName { get; set; }
-           public string Email { get; set; }
-           public string Password { get; set; }
-           public string School { get; set; }
-           public string Level { get; set; }
-           public string CvFilePath { get; set; }
-           public int RecruitmentSessionId { get; set; }
-           public virtual RecruitmentSession? RecruitmentSession { get; set; }
-           public DateTime DateCreated { get; set; } // New property
-       }
-    */
+    
     public class Candidate
     {
         public int Id { get; set; }
@@ -34,8 +20,7 @@ namespace Intership.Domain.Entities
         [MaxLength(255)]
         public string Email { get; set; }
 
-        // REMOVE Password from the Candidate entity
-        // Passwords should NEVER be stored directly in the database.
+        
 
         [Required]
         [MaxLength(255)]
@@ -53,7 +38,7 @@ namespace Intership.Domain.Entities
 
         // Navigation Property
         public RecruitmentSession RecruitmentSession { get; set; }
-  //      public string RecruitmentSessionName { get; set; }
+  
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow; // Set default value
     }
