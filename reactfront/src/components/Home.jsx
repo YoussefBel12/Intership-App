@@ -195,12 +195,26 @@ const Home = ({
                             <div>
                                 {candidate.firstName} {candidate.lastName}
                             </div>
+
+                            <div>
+                            <a
+                                href={candidate.cvFilePath}
+                                className="btn btn-sm btn-info"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View CV
+                            </a>
+
+
                             <button
                                 className="btn btn-sm btn-danger"
                                 onClick={() => handleDeleteCandidate(candidate.id)}
                             >
                                 Delete
-                            </button>
+                                </button>
+
+                            </div>
                         </li>
                     ))}
                 </ul>

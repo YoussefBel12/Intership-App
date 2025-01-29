@@ -94,6 +94,8 @@ builder.Services.AddScoped<ISuperVisorRepository, SuperVisorRepository>();
 builder.Services.AddScoped<IRequestHandler<GetActiveRecruitmentSessionQuery, RecruitmentSessionDto>, GetActiveRecruitmentSessionQueryHandler>();
 
 
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
 
 //cvfile thing repo and stuff
 // Get the uploads path from configuration
