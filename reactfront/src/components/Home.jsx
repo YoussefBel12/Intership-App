@@ -20,14 +20,6 @@ const Home = ({
 }) => (
 
 
-
-    {/* old title becarful it store the whole page div
-
-    <div className="container mt-5">
-        <h1 className="display-4 mb-4">Welcome to the Home Page</h1>
-
-        */}
-
     < div className = "container mt-5" >
      
         < div
@@ -50,82 +42,13 @@ style = {{
 
 
 
-        {/* This one bellow is the button in app jsx i made the link 
-
-        {userData && (
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                
-
-                <Link to="/ChangePassword" className="btn btn-warning">Change Password</Link>
-               
-            </div>
-        )}
-        */}
+       
 
 
 
         {userData && (userData.role === 'admin' || userData.role === 'user') && <Dashboard />}
         
 
-
-        {/* This one bellow is the button in app jsx i made the link and send u to usermanagement admin only also i cmnt it out cuz i made em in layout 
-
-        {userData?.role === 'admin' && (
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              
-                <Link to="/UserManagement" className="btn btn-warning">User Management</Link>
-
-                <Link to="/recruitmentsessions" className="btn btn-secondary">Manage Recruitment Sessions</Link>
-            </div>
-        )}
-
-        */}
-
-
-
-
-        {/* this one is admin and role but ii made it in layout also summary
-
-        {userData && (
-            <div className="alert alert-info" role="alert">
-                Logged in as: {userData.email} (Role: {userData.role})
-            </div>
-        )}
-
-
-
-
-        <div className="d-flex justify-content-between align-items-center mb-4">
-            {userData?.role === 'admin' && (
-                <button
-                    className="btn btn-primary"
-                    onClick={fetchSummary}
-                    disabled={isLoadingSummary}
-                >
-                    {isLoadingSummary ? 'Loading...' : 'Check Summary'}
-                </button>
-            )}
-
-
-            */}
-
-
-
-        {/*this is the candidate form 
-
-            {userData && userData.role === 'user' && <CandidateForm />}
-
-            */}
-
-
-        {/*logout 
-            {userData && (
-                <button className="btn btn-secondary" onClick={handleLogout}>
-                    Logout
-                </button>
-            )}
-        </div>
-        */}
 
 
         {userData?.role === 'admin' && (
