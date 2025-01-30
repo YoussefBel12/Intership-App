@@ -149,15 +149,18 @@ const App = () => {
 
     return (
         <div >
-             <Layout>
+            {/*u see this layout under i added words next to it*/ }
+            <Layout userData={userData} handleLogout={handleLogout}>
                 <Routes>
                     {/* the two route send u to the change password link url */}
 
                     <Route path="/ChangePassword" element={isLoggedIn ? <ChangePassword /> : <Navigate to="/login" />} />
                     <Route path="/" element={<Navigate to="/login" />} />
-
-                     <Route path="/UserManagement" element={<UserManagement />} /> 
+                    <Route path="/CandidateForm" element={isLoggedIn && userData?.role === 'user' ? <CandidateForm /> : <Navigate to="/login" />} />
+                    {/*     <Route path="/UserManagement" element={<UserManagement />} />   */}
                     <Route path="/recruitmentsessions" element={isLoggedIn && userData?.role === 'admin' ? <RecruitmentSessions /> : <Navigate to="/login" />} />
+                    <Route path="/UserManagement" element={isLoggedIn && userData?.role === 'admin' ? <UserManagement /> : <Navigate to="/login" />} />
+
 
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home

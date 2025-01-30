@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
-import CandidateForm from './CandidateForm';
-import { Link } from 'react-router-dom'; // Import Link here!
+//import CandidateForm from './CandidateForm';
+//import { Link } from 'react-router-dom'; // Import Link here!
 //import ChangePassword from './ChangePassword';
 import Dashboard from '../Dashboard';
 
@@ -9,44 +9,58 @@ import Dashboard from '../Dashboard';
 const Home = ({
     userData,
     candidates,
-    fetchSummary,
-    isLoadingSummary,
+    //   fetchSummary,
+    //  isLoadingSummary,
     isSummaryModalOpen,
     summaryData,
     closeSummaryModal,
     handleDeleteCandidate,
     error,
-    handleLogout,
-}) =>  (  
+    //  handleLogout,
+}) => (
 
 
 
+    {/* old title becarful it store the whole page div
 
     <div className="container mt-5">
         <h1 className="display-4 mb-4">Welcome to the Home Page</h1>
 
+        */}
+
+    < div className = "container mt-5" >
+     
+        < div
+className = "text-center p-5 rounded-3 shadow mb-4"
+style = {{
+    background: 'linear-gradient(135deg, #1976d2, #9c27b0)',
+        color: 'white',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+        }}
+    >
+        <i className="bi bi-house-door-fill display-4 mb-3"></i>
+        <h1 className="display-4 mb-3 fw-bold">Welcome to the Home Page</h1>
+        <p className="lead">Manage internships, candidates, and recruitment sessions with ease.</p>
+    </div >
 
 
-        {/* this one line i cmnt show the change pswrd form in home
+
+     
+
+
+
+
+        {/* This one bellow is the button in app jsx i made the link 
+
         {userData && (
             <div className="d-flex justify-content-between align-items-center mb-4">
-                 ... other buttons 
-                <ChangePassword /> 
-            </div>
-        )}
-
-        * /}
-
-        {/* This one bellow is the button in app jsx i made the link */}
-
-        {userData && (
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                {/* Other Buttons */}
+                
 
                 <Link to="/ChangePassword" className="btn btn-warning">Change Password</Link>
                
             </div>
         )}
+        */}
 
 
 
@@ -54,22 +68,32 @@ const Home = ({
         
 
 
-        {/* This one bellow is the button in app jsx i made the link and send u to usermanagement admin only */}
+        {/* This one bellow is the button in app jsx i made the link and send u to usermanagement admin only also i cmnt it out cuz i made em in layout 
+
         {userData?.role === 'admin' && (
             <div className="d-flex justify-content-between align-items-center mb-4">
-                {/* Other Buttons */}
+              
                 <Link to="/UserManagement" className="btn btn-warning">User Management</Link>
 
                 <Link to="/recruitmentsessions" className="btn btn-secondary">Manage Recruitment Sessions</Link>
             </div>
         )}
 
+        */}
+
+
+
+
+        {/* this one is admin and role but ii made it in layout also summary
 
         {userData && (
             <div className="alert alert-info" role="alert">
                 Logged in as: {userData.email} (Role: {userData.role})
             </div>
         )}
+
+
+
 
         <div className="d-flex justify-content-between align-items-center mb-4">
             {userData?.role === 'admin' && (
@@ -82,14 +106,27 @@ const Home = ({
                 </button>
             )}
 
+
+            */}
+
+
+
+        {/*this is the candidate form 
+
             {userData && userData.role === 'user' && <CandidateForm />}
 
+            */}
+
+
+        {/*logout 
             {userData && (
                 <button className="btn btn-secondary" onClick={handleLogout}>
                     Logout
                 </button>
             )}
         </div>
+        */}
+
 
         {userData?.role === 'admin' && (
             <div>
