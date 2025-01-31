@@ -1,10 +1,5 @@
-
 import PropTypes from 'prop-types';
-//import CandidateForm from './CandidateForm';
-//import { Link } from 'react-router-dom'; // Import Link here!
-//import ChangePassword from './ChangePassword';
 import Dashboard from '../Dashboard';
-
 
 const Home = ({
     userData,
@@ -16,14 +11,14 @@ const Home = ({
     closeSummaryModal,
     handleDeleteCandidate,
     error,
-    //  handleLogout,
-}) => (
+    toggleCandidateDetails,
+    selectedCandidate,
 
+}) => ( 
 
     < div className = "container mt-5" >
      
-        < div
-className = "text-center p-5 rounded-3 shadow mb-4"
+        < div className = "text-center p-5 rounded-3 shadow mb-4"
 style = {{
     background: 'linear-gradient(135deg, #1976d2, #9c27b0)',
         color: 'white',
@@ -37,22 +32,16 @@ style = {{
 
 
 
-     
-
-
-
-
-       
-
-
-
         {userData && (userData.role === 'admin' || userData.role === 'user') && <Dashboard />}
         
 
 
-
         {userData?.role === 'admin' && (
-            <div>
+            <div className="p-4 rounded-3 shadow" style={{
+                background: 'linear-gradient(135deg, #1976d2, #9c27b0)',
+                color: 'white',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+            }}>
                 <h2 className="mb-3">Candidates</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <ul className="list-group">
@@ -60,35 +49,55 @@ style = {{
                         <li
                             key={candidate.id}
                             className="list-group-item d-flex justify-content-between align-items-center"
+                            style={{
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                color: 'white',
+                            }}
                         >
                             <div>
-                                {candidate.firstName} {candidate.lastName}
+                                <span
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => toggleCandidateDetails(candidate.id)}
+                                >
+                                    {candidate.firstName} {candidate.lastName}
+                                </span>
+                                {selectedCandidate === candidate.id && (
+                                    <div className="mt-2">
+                                        <p><strong>Email:</strong> {candidate.email}</p>
+                                        <p><strong>School:</strong> {candidate.school}</p>
+                                        <p><strong>Level:</strong> {candidate.level}</p>
+                                        <p><strong>Date Of Candidature:</strong> {candidate.dateCreated}</p>
+                                        <p><strong>Recruitment Session:</strong> {candidate.recruitmentSessionId}</p>
+                                        {/* Add more fields as needed */}
+                                    </div>
+                                )}
                             </div>
 
                             <div>
-                            <a
-                                href={candidate.cvFilePath}
-                                className="btn btn-sm btn-info"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                View CV
-                            </a>
+                                <a
+                                    href={candidate.cvFilePath}
+                                    className="btn btn-sm btn-info me-2"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View CV
+                                </a>
 
-
-                            <button
-                                className="btn btn-sm btn-danger"
-                                onClick={() => handleDeleteCandidate(candidate.id)}
-                            >
-                                Delete
+                                <button
+                                    className="btn btn-sm btn-danger"
+                                    onClick={() => handleDeleteCandidate(candidate.id)}
+                                >
+                                    Delete
                                 </button>
-
                             </div>
                         </li>
                     ))}
                 </ul>
             </div>
         )}
+
+
 
         {!userData && (
             <div className="alert alert-warning" role="alert">
@@ -155,6 +164,11 @@ Home.propTypes = {
     handleDeleteCandidate: PropTypes.func.isRequired,
     error: PropTypes.string,
     handleLogout: PropTypes.func.isRequired,
+
+
+    toggleCandidateDetails: PropTypes.func.isRequired, // Add this line
+    selectedCandidate: PropTypes.number, // Add this line
+
 };
 
 export default Home;

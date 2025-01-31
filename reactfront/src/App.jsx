@@ -4,7 +4,8 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 import Registration from './components/Registration';
-import Login from './components/Login';
+//import Login from './components/Login';
+
 import Home from './components/Home';
 import CandidateForm from './components/CandidateForm';
 import Layout from './components/Layout';
@@ -13,12 +14,16 @@ import ChangePassword from './components/ChangePassword';
 import './App.css'
 import UserManagement from './components/UserManagement';
 import RecruitmentSessions from './components/RecruitmentSessions';
+import AuthPage from './components/AuthPage';
 
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
     const [candidates, setCandidates] = useState([]);
+
+    // State to track the selected candidate
+    const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [isLoadingSummary, setIsLoadingSummary] = useState(false);
     const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
     const [summaryData, setSummaryData] = useState(null);
@@ -52,6 +57,8 @@ const App = () => {
         }
     };
 
+
+    
     const fetchUserData = async () => {
         try {
             const storedToken = localStorage.getItem('token');
@@ -67,6 +74,8 @@ const App = () => {
         }
     };
 
+
+    
     const fetchCandidates = async () => {
         try {
             const storedToken = localStorage.getItem('token');
@@ -79,6 +88,25 @@ const App = () => {
             handleApiError(error);
         }
     };
+
+    
+
+    // Function to toggle candidate details
+    const toggleCandidateDetails = (candidateId) => {
+        if (selectedCandidate === candidateId) {
+            setSelectedCandidate(null); // Hide details if already selected
+        } else {
+            setSelectedCandidate(candidateId); // Show details for the clicked candidate
+        }
+    };
+
+
+
+
+
+
+
+
 
     const fetchSummary = async () => {
         setIsLoadingSummary(true);
@@ -139,14 +167,7 @@ const App = () => {
         setIsSummaryModalOpen(false);
     };
 
-    const AuthPage = () => (
-        <div>
-            <h1>Please sign in</h1>
-            <Login handleLogin={handleLogin} error={error} setError={setError} />
-            {/*        <Registration />   */}
-        </div>
-    );
-
+   
     return (
         <div >
             {/*u see this layout under i added words next to it*/ }
@@ -172,7 +193,9 @@ const App = () => {
                     summaryData={summaryData}
                     closeSummaryModal={closeSummaryModal}
                     handleDeleteCandidate={handleDeleteCandidate}
-                    error={error}
+                        error={error}
+                        selectedCandidate={selectedCandidate}
+                        toggleCandidateDetails={toggleCandidateDetails }
                     handleLogout={handleLogout}
                 /> : <Navigate to="/login" />} />
                 <Route path="/" element={<Navigate to="/login" />} />
