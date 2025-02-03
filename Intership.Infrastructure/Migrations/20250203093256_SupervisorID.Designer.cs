@@ -4,6 +4,7 @@ using Intership.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intership.Infrastructure.Migrations
 {
     [DbContext(typeof(IntershipDbContext))]
-    partial class IntershipDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250203093256_SupervisorID")]
+    partial class SupervisorID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,9 +207,6 @@ namespace Intership.Infrastructure.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -264,8 +264,6 @@ namespace Intership.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -405,13 +403,6 @@ namespace Intership.Infrastructure.Migrations
                     b.Navigation("SuperVisor");
                 });
 
-            modelBuilder.Entity("Intership.Infrastructure.Identity.ApplicationUser", b =>
-                {
-                    b.HasOne("Intership.Infrastructure.Identity.ApplicationUser", null)
-                        .WithMany("SupervisedInterns")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Intership.Infrastructure.Identity.ApplicationRole", null)
@@ -471,11 +462,6 @@ namespace Intership.Infrastructure.Migrations
             modelBuilder.Entity("Intership.Domain.Entities.SuperVisor", b =>
                 {
                     b.Navigation("Interns");
-                });
-
-            modelBuilder.Entity("Intership.Infrastructure.Identity.ApplicationUser", b =>
-                {
-                    b.Navigation("SupervisedInterns");
                 });
 #pragma warning restore 612, 618
         }

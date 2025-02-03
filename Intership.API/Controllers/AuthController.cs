@@ -47,8 +47,8 @@ namespace Intership.API.Controllers
 
                    await _userManager.AddToRoleAsync(user, "User");
                 //    await _userManager.AddToRoleAsync(user, "Admin");
-               // await _userManager.AddToRoleAsync(user, "Supervisor");
-
+                // await _userManager.AddToRoleAsync(user, "Supervisor");
+                // await _userManager.AddToRoleAsync(user, "Intern");
                 return Ok(new { message = "User registered successfully" });
             }
 

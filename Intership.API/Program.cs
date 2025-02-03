@@ -92,7 +92,7 @@ builder.Services.AddScoped<IRecruitmentSessionRepository, RecruitmentSessionRepo
 builder.Services.AddScoped<ISuperVisorRepository, SuperVisorRepository>();
 
 builder.Services.AddScoped<IRequestHandler<GetActiveRecruitmentSessionQuery, RecruitmentSessionDto>, GetActiveRecruitmentSessionQueryHandler>();
-
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Intership.Infrastructure.Identity.AssignSupervisorCommandHandler).Assembly));
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 

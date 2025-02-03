@@ -15,7 +15,8 @@ import './App.css'
 import UserManagement from './components/UserManagement';
 import RecruitmentSessions from './components/RecruitmentSessions';
 import AuthPage from './components/AuthPage';
-
+import SupervisorInfo from './components/SupervisorInfo';
+import InternInfo from './components/InternInfo';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -73,6 +74,16 @@ const App = () => {
             handleApiError(error);
         }
     };
+
+
+
+   
+
+
+
+
+
+
 
 
     
@@ -183,6 +194,13 @@ const App = () => {
                     <Route path="/UserManagement" element={isLoggedIn && userData?.role === 'admin' ? <UserManagement /> : <Navigate to="/login" />} />
 
 
+
+                  
+                    <Route path="/SupervisorInfo" element={isLoggedIn && userData?.role === 'intern' ? <SupervisorInfo /> : <Navigate to="/login" />} />
+                    <Route path="/InternInfo" element={isLoggedIn && userData?.role === 'supervisor' ? <InternInfo /> : <Navigate to="/login" />} />
+
+
+                   
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home
                     userData={userData}

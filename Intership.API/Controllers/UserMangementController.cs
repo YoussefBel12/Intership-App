@@ -188,6 +188,54 @@ namespace Intership.API.Controllers
             // Return the first role (if you have multiple roles, adjust this logic)
             return Ok(new { role = roles[0] });
         }
+
+
+
+        // Assign a Supervisor to an Intern
+        [HttpPut("assign-supervisor/{internId}")]
+        public async Task<IActionResult> AssignSupervisor(string internId, [FromBody] AssignSupervisorDto model)
+        {
+            // 🔹 Find the intern in the database
+            var intern = await _userManager.FindByIdAsync(internId);
+            if (intern == null)
+            {
+                return NotFound(new { message = "Intern not found." });
+            }
+
+            // 🔹 Ensure the intern has the "intern" role
+            var internRoles = await _userManager.GetRolesAsync(intern);
+            if (!internRoles.Contains("intern"))
+            {
+                return BadRequest(new { message = "User is not an intern." });
+            }
+
+            // 🔹 Find the supervisor
+            var supervisor = await _userManager.FindByIdAsync(model.SupervisorId);
+            if (supervisor == null)
+            {
+                return NotFound(new { message = "Supervisor not found." });
+            }
+
+            // 🔹 Ensure the supervisor has the "supervisor" role
+            var supervisorRoles = await _userManager.GetRolesAsync(supervisor);
+            if (!supervisorRoles.Contains("supervisor"))
+            {
+                return BadRequest(new { message = "User is not a supervisor." });
+            }
+
+            // 🔹 Assign the supervisor to the intern
+            intern.SupervisorId = model.SupervisorId;
+            var updateResult = await _userManager.UpdateAsync(intern);
+
+            if (!updateResult.Succeeded)
+            {
+                return BadRequest(updateResult.Errors.Select(e => e.Description));
+            }
+
+            return Ok(new { message = "Supervisor assigned successfully." });
+        }
+
+
     }
 
 

@@ -1,78 +1,63 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Intership.Application.Commands.CreateIntern;
-using Intership.Application.Commands.DeleteIntern;
-using Intership.Application.Commands.UpdateIntern;
-using Intership.Application.DTOs;
-using Intership.Application.Queries.GetAllInterns;
-using Intership.Application.Queries.GetInternById;
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+using Intership.Application.DTOs;
+using Intership.Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Intership.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/interns")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
     public class InternsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public InternsController(IMediator mediator)
+        public InternsController(IMediator mediator, UserManager<ApplicationUser> userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
-        // Intern CRUD operations
-
-        [HttpGet()]
-        public async Task<ActionResult<List<InternDto>>> GetAllInterns()
+        [HttpPut("{internId}/assign-supervisor")]
+        public async Task<IActionResult> AssignSupervisor(string internId, [FromBody] AssignSupervisorDto dto)
         {
-            var interns = await _mediator.Send(new GetAllInternsQuery());
-            return Ok(interns);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<InternDto>> GetInternById(int id)
-        {
-            var intern = await _mediator.Send(new GetInternByIdQuery { Id = id });
-            if (intern == null)
+            // 🔹 Validate if the user is an intern
+            var internUser = await _userManager.FindByIdAsync(internId);
+            if (internUser == null)
             {
-                return NotFound();
-            }
-            return Ok(intern);
-        }
-
-        [HttpPost()]
-        public async Task<ActionResult<int>> CreateIntern(CreateInternCommand command)
-        {
-            var internId = await _mediator.Send(command);
-            if (internId == -1)
-            {
-                return BadRequest("Supervisor not found");
-            }
-            return CreatedAtAction(nameof(GetInternById), new { id = internId }, internId);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateIntern(int id, UpdateInternCommand command)
-        {
-            if (id != command.Id)
-            {
-                return BadRequest();
+                return NotFound("Intern user not found.");
             }
 
+            var internRoles = await _userManager.GetRolesAsync(internUser);
+            if (!internRoles.Contains("intern"))
+            {
+                return BadRequest("User must be an intern before assigning a supervisor.");
+            }
+
+            // 🔹 Validate if the supervisor exists and has the supervisor role
+            var supervisorUser = await _userManager.FindByIdAsync(dto.SupervisorId);
+            if (supervisorUser == null)
+            {
+                return NotFound("Supervisor user not found.");
+            }
+
+            var supervisorRoles = await _userManager.GetRolesAsync(supervisorUser);
+            if (!supervisorRoles.Contains("supervisor"))
+            {
+                return BadRequest("The selected user is not a valid supervisor.");
+            }
+
+            // 🔹 Assign the supervisor
+            var command = new AssignSupervisorCommand { InternId = internId, SupervisorId = dto.SupervisorId };
             await _mediator.Send(command);
-            return NoContent();
-        }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteIntern(int id)
-        {
-            await _mediator.Send(new DeleteInternCommand { Id = id });
-            return NoContent();
+            return Ok("Supervisor assigned successfully.");
         }
-
-        // Add similar CRUD operations for SuperVisor, RecruitmentSession, Candidate, and User
-        // For brevity, only Intern operations are shown here
     }
 }

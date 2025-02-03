@@ -13,7 +13,13 @@ namespace Intership.Infrastructure.Identity
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        // For intern accounts, this property will hold the assigned supervisor's user ID.
+        // For admin or supervisor accounts, this remains null.
+        public string SupervisorId { get; set; }
 
+
+        // 🔹 Navigation property to fetch assigned interns
+        public virtual ICollection<ApplicationUser> SupervisedInterns { get; set; } = new List<ApplicationUser>();
 
     }
 

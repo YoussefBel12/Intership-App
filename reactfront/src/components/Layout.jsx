@@ -81,6 +81,35 @@ const Layout = ({ children, userData, handleLogout }) => {
 
 
 
+
+
+
+
+                                
+                                {userData.role === 'intern' && (
+                                    <ListItem disablePadding>
+                                        <ListItemButton component={Link} to="/SupervisorInfo" sx={{ color: 'white' }}>
+                                            My Supervisor Info
+                                        </ListItemButton>
+                                    </ListItem>
+                                )}
+
+                                {userData.role === 'supervisor' && (
+                                    <ListItem disablePadding>
+                                        <ListItemButton component={Link} to="/InternInfo" sx={{ color: 'white' }}>
+                                            My Interns
+                                        </ListItemButton>
+                                    </ListItem>
+                                )}
+
+
+
+
+
+
+
+
+
                                 {userData.role === 'admin' && (
                                     <>
                                         <ListItem disablePadding>
