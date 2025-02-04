@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Intership.Application.DTOs;
 using MediatR;
+using Intership.Infrastructure.Count;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -95,6 +96,15 @@ builder.Services.AddScoped<IRequestHandler<GetActiveRecruitmentSessionQuery, Rec
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Intership.Infrastructure.Identity.AssignSupervisorCommandHandler).Assembly));
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+
+//just delete this it controller count intern real app intern
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<GetInternUserCountQueryHandler>();
+});
+
+
 
 
 //cvfile thing repo and stuff

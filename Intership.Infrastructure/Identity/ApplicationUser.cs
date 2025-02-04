@@ -15,7 +15,7 @@ namespace Intership.Infrastructure.Identity
 
         // For intern accounts, this property will hold the assigned supervisor's user ID.
         // For admin or supervisor accounts, this remains null.
-        public string SupervisorId { get; set; }
+        public string? SupervisorId { get; set; }
 
 
         // 🔹 Navigation property to fetch assigned interns

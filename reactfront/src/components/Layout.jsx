@@ -118,6 +118,9 @@ const Layout = ({ children, userData, handleLogout }) => {
                                         <ListItem disablePadding>
                                             <ListItemButton component={Link} to="/recruitmentsessions" sx={{ color: 'white' }}>Recruitment Sessions</ListItemButton>
                                         </ListItem>
+                                        <ListItem disablePadding>
+                                            <ListItemButton component={Link} to="/DashboardAdmin" sx={{ color: 'white' }}>Admin Dashboard</ListItemButton>
+                                        </ListItem>
                                     </>
                                 )}
                             </>

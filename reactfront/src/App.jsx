@@ -17,6 +17,7 @@ import RecruitmentSessions from './components/RecruitmentSessions';
 import AuthPage from './components/AuthPage';
 import SupervisorInfo from './components/SupervisorInfo';
 import InternInfo from './components/InternInfo';
+import DashboardAdmin from './components/DashboardAdmin';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -192,7 +193,7 @@ const App = () => {
                     {/*     <Route path="/UserManagement" element={<UserManagement />} />   */}
                     <Route path="/recruitmentsessions" element={isLoggedIn && userData?.role === 'admin' ? <RecruitmentSessions /> : <Navigate to="/login" />} />
                     <Route path="/UserManagement" element={isLoggedIn && userData?.role === 'admin' ? <UserManagement /> : <Navigate to="/login" />} />
-
+                    <Route path="/DashboardAdmin" element={isLoggedIn && userData?.role === 'admin' ? <DashboardAdmin /> : <Navigate to="/login" />} />
 
 
                   

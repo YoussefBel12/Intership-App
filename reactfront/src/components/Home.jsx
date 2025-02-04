@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Dashboard from '../Dashboard';
+//import DashboardAdmin from './DashboardAdmin';
 
 const Home = ({
     userData,
@@ -34,8 +35,8 @@ style = {{
 
         {/*    {userData  && (userData.role === 'admin' || userData.role === 'user')  && <Dashboard />} */}
         
-        {userData && <Dashboard />} 
-
+        {userData && <Dashboard />}
+       
 
 
         {userData?.role === 'admin' && (
