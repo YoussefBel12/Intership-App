@@ -92,7 +92,7 @@ const Dashboard = () => {
                                 <PeopleIcon fontSize="large" />
                             </IconBox>
                             <Typography variant="h6" sx={{ color: 'text.secondary', mb: 1 }}>
-                                Total Interns
+                                Needed Interns
                             </Typography>
                             <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
                                 {summary.totalInterns}

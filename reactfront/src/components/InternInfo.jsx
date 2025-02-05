@@ -1,7 +1,34 @@
-/*
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../config';
+import {
+    Container,
+    Typography,
+    Card,
+    CardContent,
+    Box,
+    Grid,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import PersonIcon from '@mui/icons-material/Person';
+
+// Styled Card with gradient background and hover effect
+const GradientCard = styled(Card)(({ theme }) => ({
+    borderRadius: theme.spacing(2),
+    boxShadow: theme.shadows[6],
+    background: 'linear-gradient(45deg, #1976d2, #9c27b0)', // Blue to purple gradient
+    color: theme.palette.common.white,
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    width: '100%',
+    maxWidth: 300,
+    margin: 'auto',
+    transition: 'transform 0.3s ease-in-out', // Smooth transition for hover
+    '&:hover': {
+        transform: 'scale(1.05)', // Zoom effect on hover
+    },
+}));
 
 const InternInfo = () => {
     const [interns, setInterns] = useState([]);
@@ -11,15 +38,18 @@ const InternInfo = () => {
         const fetchInterns = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${config.baseApiUrl}/api/supervisors/interns`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const response = await axios.get(
+                    `${config.baseApiUrl}/api/supervisors/interns`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
                 setInterns(response.data);
             } catch (err) {
-                console.error("Error fetching interns:", err);
-                setError("Failed to fetch interns information.");
+                console.error('Error fetching interns:', err);
+                setError('Failed to fetch interns information.');
             }
         };
 
@@ -27,89 +57,61 @@ const InternInfo = () => {
     }, []);
 
     if (error) {
-        return <p style={{ color: 'red' }}>{error}</p>;
+        return (
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+                <Typography variant="h6" color="error">
+                    {error}
+                </Typography>
+            </Container>
+        );
     }
 
     if (!interns || interns.length === 0) {
-        return <p>No interns assigned yet.</p>; // Or a loading spinner if fetching
+        return (
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+                <Typography variant="h6" color="textSecondary">
+                    No interns assigned yet.
+                </Typography>
+            </Container>
+        );
     }
 
     return (
-        <div>
-            <h2>Your Interns</h2>
-            <ul>
+        <Container maxWidth="lg" sx={{ mt: 4 }}>
+            <Typography variant="h3"
+                component="h2"
+                sx={{
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    mb: 4,
+                    background: 'linear-gradient(45deg, #1976d2, #9c27b0)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
+                }}
+            >
+                Your Interns
+            </Typography>
+            <Grid container spacing={4}>
                 {interns.map((intern) => (
-                    <li key={intern.id}>
-                        {intern.userName} - {intern.email}
-                        
-                    </li>
+                    <Grid item xs={12} sm={6} md={4} key={intern.id}>
+                        <GradientCard>
+                            <CardContent>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                                    <PersonIcon sx={{ fontSize: 60 }} />
+                                </Box>
+                                <Typography variant="h6" component="div" sx={{ mb: 1 }}>
+                                    {intern.firstName && intern.lastName
+                                        ? `${intern.firstName} ${intern.lastName}`
+                                        : intern.userName || 'N/A'}
+                                </Typography>
+                                <Typography variant="body1">{intern.email}</Typography>
+                            </CardContent>
+                        </GradientCard>
+                    </Grid>
                 ))}
-            </ul>
-        </div>
-    );
-};
-
-export default InternInfo;
-*/
-
-
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
-import config from '../config';
-
-const InternInfo = () => {
-    const [interns, setInterns] = useState([]);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchInterns = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${config.baseApiUrl}/api/supervisors/interns`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setInterns(response.data);
-            } catch (err) {
-                console.error("Error fetching interns:", err);
-                setError("Failed to fetch interns information.");
-            }
-        };
-
-        fetchInterns();
-    }, []);
-
-    if (error) {
-        return <p style={{ color: 'red' }}>{error}</p>;
-    }
-
-    if (!interns || interns.length === 0) {
-        return <p>No interns assigned yet.</p>;
-    }
-
-    return (
-        <div>
-            <h2>Your Interns</h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr style={{ backgroundColor: '#3f51b5', color: 'white', fontWeight: 'bold' }}>
-                        <th style={{ padding: '8px', border: '1px solid #ddd' }}>Name</th>
-                        <th style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {interns.map((intern) => (
-                        <tr key={intern.id} style={{ backgroundColor: interns.indexOf(intern) % 2 === 0 ? '#f2f2f2' : 'white' }}>
-                            <td style={{ padding: '8px', border: '1px solid #ddd' }}>
-                                {intern.firstName && intern.lastName ? `${intern.firstName} ${intern.lastName}` : intern.userName || "N/A"}
-                            </td>
-                            <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>{intern.email}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            </Grid>
+        </Container>
     );
 };
 
