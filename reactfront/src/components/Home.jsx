@@ -4,16 +4,14 @@ import Dashboard from '../Dashboard';
 
 const Home = ({
     userData,
-    candidates,
-    //   fetchSummary,
-    //  isLoadingSummary,
     isSummaryModalOpen,
     summaryData,
     closeSummaryModal,
-    handleDeleteCandidate,
-    error,
-    toggleCandidateDetails,
-    selectedCandidate,
+  //  candidates,  
+  //  handleDeleteCandidate,
+   // error,
+   // toggleCandidateDetails,
+   // selectedCandidate,
 
 }) => ( 
 
@@ -39,6 +37,7 @@ style = {{
        
 
 
+        {/* 
         {userData?.role === 'admin' && (
             <div className="p-4 rounded-3 shadow" style={{
                 background: 'linear-gradient(135deg, #1976d2, #9c27b0)',
@@ -72,7 +71,7 @@ style = {{
                                         <p><strong>Level:</strong> {candidate.level}</p>
                                         <p><strong>Date Of Candidature:</strong> {candidate.dateCreated}</p>
                                         <p><strong>Recruitment Session:</strong> {candidate.recruitmentSessionId}</p>
-                                        {/* Add more fields as needed */}
+                                        
                                     </div>
                                 )}
                             </div>
@@ -99,6 +98,10 @@ style = {{
                 </ul>
             </div>
         )}
+
+        */}
+
+
 
 
 
@@ -154,7 +157,7 @@ Home.propTypes = {
         email: PropTypes.string.isRequired,
         role: PropTypes.string.isRequired,
     }),
-    candidates: PropTypes.arrayOf(PropTypes.object).isRequired,
+ //   candidates: PropTypes.arrayOf(PropTypes.object).isRequired,
     fetchSummary: PropTypes.func.isRequired,
     isLoadingSummary: PropTypes.bool.isRequired,
     isSummaryModalOpen: PropTypes.bool.isRequired,
@@ -164,13 +167,13 @@ Home.propTypes = {
         totalRecruitmentSessions: PropTypes.number,
     }),
     closeSummaryModal: PropTypes.func.isRequired,
-    handleDeleteCandidate: PropTypes.func.isRequired,
-    error: PropTypes.string,
+  //  handleDeleteCandidate: PropTypes.func.isRequired,
+   // error: PropTypes.string,
     handleLogout: PropTypes.func.isRequired,
 
 
-    toggleCandidateDetails: PropTypes.func.isRequired, // Add this line
-    selectedCandidate: PropTypes.number, // Add this line
+ //   toggleCandidateDetails: PropTypes.func.isRequired, // Add this line
+   // selectedCandidate: PropTypes.number, // Add this line
 
 };
 

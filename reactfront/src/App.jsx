@@ -18,6 +18,7 @@ import AuthPage from './components/AuthPage';
 import SupervisorInfo from './components/SupervisorInfo';
 import InternInfo from './components/InternInfo';
 import DashboardAdmin from './components/DashboardAdmin';
+import CandidateList from './components/CandidateList';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -194,7 +195,23 @@ const App = () => {
                     <Route path="/recruitmentsessions" element={isLoggedIn && userData?.role === 'admin' ? <RecruitmentSessions /> : <Navigate to="/login" />} />
                     <Route path="/UserManagement" element={isLoggedIn && userData?.role === 'admin' ? <UserManagement /> : <Navigate to="/login" />} />
                     <Route path="/DashboardAdmin" element={isLoggedIn && userData?.role === 'admin' ? <DashboardAdmin /> : <Navigate to="/login" />} />
-
+                    <Route
+                        path="/CandidateList"
+                        element={
+                            isLoggedIn && userData?.role === 'admin' ? (
+                                <CandidateList
+                                    candidates={candidates}
+                                    error={error}
+                                    toggleCandidateDetails={toggleCandidateDetails}
+                                    selectedCandidate={selectedCandidate}
+                                    handleDeleteCandidate={handleDeleteCandidate}
+                                   
+                                />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
 
                   
                     <Route path="/SupervisorInfo" element={isLoggedIn && userData?.role === 'intern' ? <SupervisorInfo /> : <Navigate to="/login" />} />
@@ -205,16 +222,16 @@ const App = () => {
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home
                     userData={userData}
-                    candidates={candidates}
+           //         candidates={candidates}
                     fetchSummary={fetchSummary}
                     isLoadingSummary={isLoadingSummary}
                     isSummaryModalOpen={isSummaryModalOpen}
                     summaryData={summaryData}
                     closeSummaryModal={closeSummaryModal}
-                    handleDeleteCandidate={handleDeleteCandidate}
-                        error={error}
-                        selectedCandidate={selectedCandidate}
-                        toggleCandidateDetails={toggleCandidateDetails }
+           //         handleDeleteCandidate={handleDeleteCandidate}
+             //           error={error}
+               //         selectedCandidate={selectedCandidate}
+                 //       toggleCandidateDetails={toggleCandidateDetails }
                     handleLogout={handleLogout}
                 /> : <Navigate to="/login" />} />
                 <Route path="/" element={<Navigate to="/login" />} />
