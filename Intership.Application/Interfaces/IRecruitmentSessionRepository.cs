@@ -22,6 +22,12 @@ namespace Intership.Application.Interfaces
         // New method to get active recruitment session
         Task<RecruitmentSession?> GetActiveRecruitmentSessionAsync(DateTime now);
 
+
+
+
+        // Method to close active sessions
+        Task CloseActiveSessionsAsync();
+
     }
 
 }

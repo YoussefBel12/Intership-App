@@ -17,6 +17,10 @@ namespace Intership.Application.Commands.CreateRecruitmentSession
 
         public async Task<int> Handle(CreateRecruitmentSessionCommand request, CancellationToken cancellationToken)
         {
+
+            // Close any active sessions
+            await _repository.CloseActiveSessionsAsync();
+
             var session = new RecruitmentSession
             {
                 Name = request.Name,

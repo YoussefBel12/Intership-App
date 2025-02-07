@@ -76,5 +76,25 @@ namespace Intership.Infrastructure.Data.Repository
 
 
 
+
+
+
+
+        // i added this dont forget it
+        public async Task CloseActiveSessionsAsync()
+        {
+            var activeSessions = await _context.RecruitmentSessions
+                .Where(rs => rs.DateEnded == null || rs.DateEnded > DateTime.UtcNow)
+                .ToListAsync();
+
+            foreach (var session in activeSessions)
+            {
+                session.DateEnded = DateTime.UtcNow;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }
