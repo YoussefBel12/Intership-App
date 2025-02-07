@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Intership.Application.DTOs;
 using Intership.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intership.API.Controllers
 {
@@ -59,5 +60,68 @@ namespace Intership.API.Controllers
 
             return Ok("Supervisor assigned successfully.");
         }
+
+
+/*
+        [HttpGet("list-users")]
+
+        public async Task<IActionResult> ListUsersByRole(string role)
+        {
+            // Fetch users in the specified role
+            var users = await _userManager.GetUsersInRoleAsync(role);
+
+            var usersWithRoles = new List<object>();
+
+            // Fetch roles for each user sequentially
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                usersWithRoles.Add(new
+                {
+                    user.Id,
+                    user.FirstName,
+                    user.LastName,
+                    user.Email,
+                    Roles = roles.Any() ? roles : new string[] { } // Handle users without roles
+                });
+            }
+
+            return Ok(usersWithRoles);
+        }
+*/
+        [HttpGet("list-supervisors")]
+        public async Task<IActionResult> ListSupervisors()
+        {
+            // Fetch users in the supervisor role
+            var supervisors = await _userManager.GetUsersInRoleAsync("supervisor");
+
+            var supervisorsWithDetails = supervisors.Select(supervisor => new
+            {
+                supervisor.Id,
+                supervisor.FirstName,
+                supervisor.LastName,
+                supervisor.Email
+            }).ToList();
+
+            return Ok(supervisorsWithDetails);
+        }
+
+        [HttpGet("list-interns")]
+        public async Task<IActionResult> ListInterns()
+        {
+            // Fetch users in the intern role
+            var interns = await _userManager.GetUsersInRoleAsync("intern");
+
+            var internsWithDetails = interns.Select(intern => new
+            {
+                intern.Id,
+                intern.FirstName,
+                intern.LastName,
+                intern.Email
+            }).ToList();
+
+            return Ok(internsWithDetails);
+        }
+
     }
 }

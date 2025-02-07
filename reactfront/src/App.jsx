@@ -19,6 +19,8 @@ import SupervisorInfo from './components/SupervisorInfo';
 import InternInfo from './components/InternInfo';
 import DashboardAdmin from './components/DashboardAdmin';
 import CandidateList from './components/CandidateList';
+import AssignSupervisor from './components/AssignSupervisor';
+
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -217,7 +219,7 @@ const App = () => {
                     <Route path="/SupervisorInfo" element={isLoggedIn && userData?.role === 'intern' ? <SupervisorInfo /> : <Navigate to="/login" />} />
                     <Route path="/InternInfo" element={isLoggedIn && userData?.role === 'supervisor' ? <InternInfo /> : <Navigate to="/login" />} />
 
-
+                    <Route path="/AssignSupervisor" element={isLoggedIn && userData?.role === 'admin' ? <AssignSupervisor /> : <Navigate to="/login" />} />
                    
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home
