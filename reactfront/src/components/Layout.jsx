@@ -104,6 +104,15 @@ const Layout = ({ children, userData, handleLogout }) => {
 
 
 
+                                {userData.role === 'admin' && (
+                                    <ListItem disablePadding>
+                                        <ListItemButton component={Link} to="/DashboardSupervisor" sx={{ color: 'white' }}>
+                                            Intern-Supervisor Dash
+                                        </ListItemButton>
+                                    </ListItem>
+                                )}
+
+
 
                                 
                                 {userData.role === 'intern' && (

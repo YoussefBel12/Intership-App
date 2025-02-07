@@ -98,6 +98,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Inter
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 
+
+
+
 //just delete this it controller count intern real app intern
 builder.Services.AddMediatR(cfg =>
 {

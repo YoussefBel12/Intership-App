@@ -20,6 +20,7 @@ import InternInfo from './components/InternInfo';
 import DashboardAdmin from './components/DashboardAdmin';
 import CandidateList from './components/CandidateList';
 import AssignSupervisor from './components/AssignSupervisor';
+import DashboardSupervisor from './components/DashboardSupervisor';
 
 
 const App = () => {
@@ -197,6 +198,8 @@ const App = () => {
                     <Route path="/recruitmentsessions" element={isLoggedIn && userData?.role === 'admin' ? <RecruitmentSessions /> : <Navigate to="/login" />} />
                     <Route path="/UserManagement" element={isLoggedIn && userData?.role === 'admin' ? <UserManagement /> : <Navigate to="/login" />} />
                     <Route path="/DashboardAdmin" element={isLoggedIn && userData?.role === 'admin' ? <DashboardAdmin /> : <Navigate to="/login" />} />
+                    <Route path="/DashboardSupervisor" element={isLoggedIn && userData?.role === 'admin' ? <DashboardSupervisor /> : <Navigate to="/login" />} />
+
                     <Route
                         path="/CandidateList"
                         element={

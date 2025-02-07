@@ -24,5 +24,10 @@ namespace Intership.API.Controllers
             int supervisorCount = await _mediator.Send(new GetSupervisorUserCountQuery(), cancellationToken);
             return Ok(new { SupervisorCount = supervisorCount });
         }
+
+
+
+   
+
     }
 }

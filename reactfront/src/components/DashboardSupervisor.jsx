@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -9,7 +8,6 @@ import {
     ThemeProvider,
     createTheme
 } from '@mui/material';
-// Import styled from @mui/material/styles rather than @mui/system
 import { styled } from '@mui/material/styles';
 import config from '../config';
 import {
@@ -47,7 +45,7 @@ const ChartWrapper = styled(Box)(({ theme }) => ({
     marginTop: '20px'
 }));
 
-const DashboardAdmin = () => {
+const DashboardSupervisor = () => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const token = localStorage.getItem('token');
@@ -62,17 +60,8 @@ const DashboardAdmin = () => {
 
         const fetchData = async () => {
             try {
-                const [internResponse, supervisorResponse, userResponse] = await Promise.all([
-                    axiosInstance.get('/api/ShowInternNumber/intern-count'),
-                    axiosInstance.get('/api/ShowSupervisorNumber/supervisor-count'),
-                    axiosInstance.get('/api/ShowUserNumber/user-count')
-                ]);
-
-                setData({
-                    internCount: internResponse.data.internCount,
-                    supervisorCount: supervisorResponse.data.supervisorCount,
-                    userCount: userResponse.data.userCount
-                });
+                const response = await axiosInstance.get('/api/InternsPerSupervisor/intern-count');
+                setData(response.data);
             } catch (err) {
                 console.error('Error fetching data:', err);
                 setError(`Failed to fetch data: ${err.message}`);
@@ -92,7 +81,7 @@ const DashboardAdmin = () => {
         );
     }
 
-    if (data === null) {
+    if (!data) {
         return (
             <DashboardContainer maxWidth="lg">
                 <CircularProgress />
@@ -100,14 +89,11 @@ const DashboardAdmin = () => {
         );
     }
 
-    const { internCount, supervisorCount, userCount } = data;
-
-    // Prepare chart data
-    const chartData = [
-        { name: 'Interns', count: internCount || 0 },
-        { name: 'Supervisors', count: supervisorCount || 0 },
-        { name: 'Users', count: userCount || 0 }
-    ];
+    // Format chart data
+    const chartData = data.map((supervisor) => ({
+        name: supervisor.fullName,
+        count: supervisor.internCount
+    }));
 
     return (
         <ThemeProvider theme={theme}>
@@ -117,14 +103,14 @@ const DashboardAdmin = () => {
                     gutterBottom
                     sx={{ color: 'primary.main', fontWeight: 'bold', mb: 4 }}
                 >
-                    Admin Dashboard
+                    Interns Per Supervisor
                 </Typography>
                 <ChartWrapper>
                     <Typography
                         variant="h6"
                         sx={{ color: 'text.secondary', mb: 2, textAlign: 'center' }}
                     >
-                        User Summary
+                        Number of Interns Assigned to Each Supervisor
                     </Typography>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -146,8 +132,4 @@ const DashboardAdmin = () => {
     );
 };
 
-export default DashboardAdmin;
-
-
-
-
+export default DashboardSupervisor;
