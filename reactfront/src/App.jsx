@@ -24,6 +24,7 @@ import DashboardSupervisor from './components/DashboardSupervisor';
 
 
 const App = () => {
+   
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
     const [candidates, setCandidates] = useState([]);
@@ -226,27 +227,29 @@ const App = () => {
                    
                 <Route path="/login" element={!isLoggedIn ? <AuthPage handleLogin={handleLogin} error={error} setError={setError} /> : <Navigate to="/home" />} />
                 <Route path="/home" element={isLoggedIn ? <Home
-                    userData={userData}
-           //         candidates={candidates}
-                    fetchSummary={fetchSummary}
-                    isLoadingSummary={isLoadingSummary}
-                    isSummaryModalOpen={isSummaryModalOpen}
-                    summaryData={summaryData}
-                    closeSummaryModal={closeSummaryModal}
-           //         handleDeleteCandidate={handleDeleteCandidate}
-             //           error={error}
-               //         selectedCandidate={selectedCandidate}
-                 //       toggleCandidateDetails={toggleCandidateDetails }
-                    handleLogout={handleLogout}
+                        userData={userData}
+                        //         candidates={candidates}
+                        fetchSummary={fetchSummary}
+                        isLoadingSummary={isLoadingSummary}
+                        isSummaryModalOpen={isSummaryModalOpen}
+                        summaryData={summaryData}
+                        closeSummaryModal={closeSummaryModal}
+                        //         handleDeleteCandidate={handleDeleteCandidate}
+                        //           error={error}
+                        //         selectedCandidate={selectedCandidate}
+                        //       toggleCandidateDetails={toggleCandidateDetails }
+                        handleLogout={handleLogout}
+                        isLoggedIn={isLoggedIn }
                 /> : <Navigate to="/login" />} />
                 <Route path="/" element={<Navigate to="/login" />} />
                 <Route path="/register" element={<Registration />} />
                 </Routes>
             </Layout>
 
-            {isLoggedIn && userData?.role === 'candidate' && <CandidateForm />}
+           
         </div>
-       
+
+        
     );
 };
 

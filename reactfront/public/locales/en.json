@@ -1,0 +1,215 @@
+{
+    "userManagement": {
+        "User Management": "User Management",
+        "Add User": "Add User",
+        "Modify User": "Modify User",
+        "First Name": "First Name",
+        "Last Name": "Last Name",
+        "Email": "Email",
+        "Password": "Password",
+        "Role": "Role",
+        "Select Supervisor": "Select Supervisor",
+        "Save Changes": "Save Changes",
+        "Cancel": "Cancel",
+        "Back to Home": "Back to Home",
+        "User List": "User List",
+        "Loading...": "Loading...",
+        "View": "View",
+        "Modify": "Modify",
+        "View Details": "View Details",
+        "Failed to fetch users. Please try again.": "Failed to fetch users. Please try again.",
+        "Failed to fetch supervisors.": "Failed to fetch supervisors.",
+        "Failed to save user. Please try again.": "Failed to save user. Please try again.",
+        "Access denied. Only admins can view this page.": "Access denied. Only admins can view this page.",
+        "Failed to verify role. Please log in again.": "Failed to verify role. Please log in again.",
+        "Admin": "Admin",
+        "Intern": "Intern",
+        "Supervisor": "Supervisor"
+    },
+    "supervisorInfo": {
+        "Supervisor Information": "Supervisor Information",
+        "Loading supervisor data...": "Loading supervisor data...",
+        "Failed to fetch supervisor information.": "Failed to fetch supervisor information.",
+        "Supervisor Details": "Supervisor Details"
+    },
+    "home": {
+        "Welcome to the Home Page": "Welcome to the Home Page",
+        "Manage internships, candidates, and recruitment sessions with ease.": "Manage internships, candidates, and recruitment sessions with ease.",
+        "Please log in to continue.": "Please log in to continue.",
+        "Summary": "Summary",
+        "Total Interns": "Total Interns",
+        "Total Candidates": "Total Candidates",
+        "Total Recruitment Sessions": "Total Recruitment Sessions",
+        "Loading...": "Loading...",
+        "Close": "Close"
+    },
+
+
+
+    "Please sign in": "Please sign in",
+
+
+
+    "login": "Login",
+    "please_enter_both_username_and_password": "Please enter both username and password.",
+    "email_address": "Email Address",
+    "password": "Password",
+    "remember_me": "Remember Me",
+    "dont_have_an_account": "Don't have an account? Register",
+
+
+
+
+    "register": "Register",
+    "registration_successful": "Registration successful!",
+    "email_address": "Email Address",
+    "password": "Password",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "already_have_account": "Already have an account? Login",
+
+
+
+
+    "layout": {
+        "Internship & Candidate Web App": "Internship & Candidate Web App",
+        "Logout": "Logout",
+        "Home": "Home",
+        "Login": "Login",
+        "Register": "Register",
+        "Change Password": "Change Password",
+        "Want To Post Your Candidature": "Want To Post Your Candidature",
+        "Candidate List": "Candidate List",
+        "Assign Supervisor": "Assign Supervisor",
+        "Intern-Supervisor Dash": "Intern-Supervisor Dash",
+        "My Supervisor Info": "My Supervisor Info",
+        "My Interns": "My Interns",
+        "User Management": "User Management",
+        "Recruitment Sessions": "Recruitment Sessions",
+        "Admin Dashboard": "Admin Dashboard",
+        "All rights reserved.": "All rights reserved."
+    },
+
+
+
+    "candidates": "Candidates",
+    "email": "Email",
+    "school": "School",
+    "level": "Level",
+    "date_of_candidature": "Date Of Candidature",
+    "recruitment_session": "Recruitment Session",
+    "view_cv": "View CV",
+    "delete": "Delete",
+
+
+
+    "submit_your_candidature": "Submit Your Candidature",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "school": "School",
+    "level": "Level",
+    "submit": "Submit",
+    "candidature_submitted_successfully": "Candidature submitted successfully!",
+    "please_select_a_cv_file_or_enter_a_custom_path": "Please select a CV file or enter a custom path.",
+    "server_responded_with_an_error": "Server responded with an error.",
+    "no_response_received_from_the_server": "No response received from the server.",
+    "error_setting_up_the_request": "Error setting up the request.",
+
+
+
+
+
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_new_password": "Confirm New Password",
+    "change_password_success": "Password changed successfully!",
+    "change_password_error": "Failed to change password.",
+    "passwords_do_not_match": "New password and confirm password do not match.",
+    "server_responded_with_an_error": "Server responded with an error.",
+    "no_response_received_from_the_server": "No response received from the server.",
+    "error_setting_up_the_request": "Error setting up the request.",
+    "back_to_home": "Back to Home",
+
+
+
+
+    "admin_dashboard": "Admin Dashboard",
+    "user_summary": "User Summary",
+    "interns": "Interns",
+    "supervisors": "Supervisors",
+    "users": "Users",
+    "error_fetching_data": "Failed to fetch data: {error}",
+
+
+
+    "interns_per_supervisor": "Interns Per Supervisor",
+    "number_of_interns_assigned": "Number of Interns Assigned to Each Supervisor",
+    "error_fetching_data": "Failed to fetch data: {error}",
+
+
+
+    "your_interns": "Your Interns",
+    "error_fetching_interns": "Failed to fetch interns information.",
+    "no_interns_assigned": "No interns assigned yet.",
+
+
+
+
+    "recruitment_sessions": "Recruitment Sessions",
+    "error_fetching_sessions": "Failed to fetch sessions.",
+    "session_created_successfully": "Recruitment session created successfully.",
+    "failed_create_session": "Failed to create recruitment session.",
+    "existing_sessions": "Existing Sessions",
+    "name": "Name",
+    "year": "Year",
+    "comment": "Comment",
+    "date_created": "Date Created",
+    "date_ended": "Date Ended",
+    "create_session": "Create Session",
+    "go_back": "Go Back",
+    "active": "Active",
+    "closed": "Closed",
+
+
+
+
+    "userManagement": "User Management",
+    "modifyUser": "Modify User",
+    "addUser": "Add User",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "role": "Role",
+    "selectSupervisor": "Select Supervisor",
+    "none": "None",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "backToHome": "Back to Home",
+    "userList": "User List",
+    "loading": "Loading...",
+    "name": "Name",
+    "actions": "Actions",
+    "view": "View",
+    "modify": "Modify",
+    "fetchUsersError": "Failed to fetch users. Please try again.",
+    "fetchSupervisorsError": "Failed to fetch supervisors.",
+    "fetchUserDetailsError": "Failed to fetch user details. Please try again.",
+    "saveUserError": "Failed to save user. Please try again.",
+    "roleAccessDenied": "Access denied. Only admins can view this page.",
+    "roleVerificationError": "Failed to verify role. Please log in again.",
+
+
+
+    "dashboard": {
+        "title": "Dashboard",
+        "neededInterns": "Needed Interns",
+        "totalCandidates": "Total Candidates",
+        "totalRecruitmentSessions": "Total Recruitment Sessions"
+    }
+
+
+}
+

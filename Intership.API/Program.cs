@@ -98,6 +98,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Inter
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 
+builder.Services.AddHttpClient();
 
 
 

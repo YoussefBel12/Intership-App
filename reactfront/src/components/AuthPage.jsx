@@ -1,8 +1,10 @@
 
-
+/*
 import PropTypes from 'prop-types';
 import Login from './Login';
 import { Typography } from '@mui/material';
+
+
 
 // Custom style for the "Please sign in" heading
 const HeadingStyle = {
@@ -21,14 +23,56 @@ const HeadingStyle = {
 };
 
 const AuthPage = ({ handleLogin, error, setError }) => (
+     
     <div style={{ textAlign: 'center', padding: '24px', background: 'url("your-background-image.jpg")', backgroundSize: 'cover', minHeight: '100vh' }}>
-        {/* Updated "Please sign in" heading */}
+       
         <Typography variant="h1" sx={HeadingStyle}>
             Please sign in
         </Typography>
         <Login handleLogin={handleLogin} error={error} setError={setError} />
     </div>
 );
+
+AuthPage.propTypes = {
+    handleLogin: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    setError: PropTypes.func.isRequired,
+};
+
+export default AuthPage;
+*/
+import PropTypes from 'prop-types';
+import Login from './Login';
+import { Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+const HeadingStyle = {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#ffffff',
+    textAlign: 'center',
+    marginBottom: '24px',
+    textTransform: 'uppercase',
+    letterSpacing: '1.5px',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+    padding: '16px 0',
+    background: 'linear-gradient(45deg, #1976d2, #9c27b0)',
+    borderRadius: '8px',
+    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
+};
+
+const AuthPage = ({ handleLogin, error, setError }) => {
+    const { t } = useTranslation();
+
+    return (
+        <div style={{ textAlign: 'center', padding: '24px', background: 'url("your-background-image.jpg")', backgroundSize: 'cover', minHeight: '100vh' }}>
+            <Typography variant="h1" sx={HeadingStyle}>
+                {t('Please sign in')}
+            </Typography>
+            <Login handleLogin={handleLogin} error={error} setError={setError} />
+        </div>
+    );
+};
 
 AuthPage.propTypes = {
     handleLogin: PropTypes.func.isRequired,

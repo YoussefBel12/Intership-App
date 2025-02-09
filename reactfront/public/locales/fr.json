@@ -1,0 +1,217 @@
+{
+    "userManagement": {
+        "User Management": "Gestion des utilisateurs",
+        "Add User": "Ajouter un utilisateur",
+        "Modify User": "Modifier un utilisateur",
+        "First Name": "Prénom",
+        "Last Name": "Nom de famille",
+        "Email": "Email",
+        "Password": "Mot de passe",
+        "Role": "Rôle",
+        "Select Supervisor": "Sélectionner un superviseur",
+        "Save Changes": "Enregistrer les modifications",
+        "Cancel": "Annuler",
+        "Back to Home": "Retour à l'accueil",
+        "User List": "Liste des utilisateurs",
+        "Loading...": "Chargement...",
+        "View": "Voir",
+        "Modify": "Modifier",
+        "View Details": "Voir les détails",
+        "Failed to fetch users. Please try again.": "Échec de la récupération des utilisateurs. Veuillez réessayer.",
+        "Failed to fetch supervisors.": "Échec de la récupération des superviseurs.",
+        "Failed to save user. Please try again.": "Échec de l'enregistrement de l'utilisateur. Veuillez réessayer.",
+        "Access denied. Only admins can view this page.": "Accès refusé. Seuls les administrateurs peuvent voir cette page.",
+        "Failed to verify role. Please log in again.": "Échec de la vérification du rôle. Veuillez vous reconnecter.",
+        "Admin": "Admin",
+        "Intern": "Stagiaire",
+        "Supervisor": "Superviseur"
+    },
+    "supervisorInfo": {
+        "Supervisor Information": "Informations sur le superviseur",
+        "Loading supervisor data...": "Chargement des données du superviseur...",
+        "Failed to fetch supervisor information.": "Échec de la récupération des informations du superviseur.",
+        "Supervisor Details": "Détails du superviseur"
+    },
+    "home": {
+        "Welcome to the Home Page": "Bienvenue sur la page d'accueil",
+        "Manage internships, candidates, and recruitment sessions with ease.": "Gérez facilement les stages, les candidats et les sessions de recrutement.",
+        "Please log in to continue.": "Veuillez vous connecter pour continuer.",
+        "Summary": "Résumé",
+        "Total Interns": "Total des stagiaires",
+        "Total Candidates": "Total des candidats",
+        "Total Recruitment Sessions": "Total des sessions de recrutement",
+        "Loading...": "Chargement...",
+        "Close": "Fermer"
+    },
+
+
+
+
+
+    "login": "Se connecter",
+    "please_enter_both_username_and_password": "Veuillez entrer à la fois le nom d'utilisateur et le mot de passe.",
+    "email_address": "Adresse e-mail",
+    "password": "Mot de passe",
+    "remember_me": "Se souvenir de moi",
+    "dont_have_an_account": "Vous n'avez pas de compte? Inscrivez-vous",
+
+
+    "Please sign in": "Veuillez vous connecter",
+
+
+
+
+    "register": "S'inscrire",
+    "registration_successful": "Inscription réussie!",
+    "email_address": "Adresse e-mail",
+    "password": "Mot de passe",
+    "first_name": "Prénom",
+    "last_name": "Nom de famille",
+    "already_have_account": "Vous avez déjà un compte ? Connexion",
+
+
+
+
+    "layout": {
+        "Internship & Candidate Web App": "Application Web de Stages et Candidats",
+        "Logout": "Se déconnecter",
+        "Home": "Accueil",
+        "Login": "Connexion",
+        "Register": "Inscription",
+        "Change Password": "Changer le mot de passe",
+        "Want To Post Your Candidature": "Souhaitez-vous publier votre candidature",
+        "Candidate List": "Liste des candidats",
+        "Assign Supervisor": "Attribuer un superviseur",
+        "Intern-Supervisor Dash": "Tableau de bord Stagiaire-Superviseur",
+        "My Supervisor Info": "Mes informations de superviseur",
+        "My Interns": "Mes stagiaires",
+        "User Management": "Gestion des utilisateurs",
+        "Recruitment Sessions": "Sessions de recrutement",
+        "Admin Dashboard": "Tableau de bord Admin",
+        "All rights reserved.": "Tous droits réservés."
+    },
+
+
+    "candidates": "Candidats",
+    "email": "E-mail",
+    "school": "École",
+    "level": "Niveau",
+    "date_of_candidature": "Date de candidature",
+    "recruitment_session": "Session de recrutement",
+    "view_cv": "Voir le CV",
+    "delete": "Supprimer",
+
+
+
+
+
+    "submit_your_candidature": "Soumettez votre candidature",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "email": "E-mail",
+    "school": "École",
+    "level": "Niveau",
+    "submit": "Soumettre",
+    "candidature_submitted_successfully": "Candidature soumise avec succès!",
+    "please_select_a_cv_file_or_enter_a_custom_path": "Veuillez sélectionner un fichier CV ou entrer un chemin personnalisé.",
+    "server_responded_with_an_error": "Le serveur a répondu avec une erreur.",
+    "no_response_received_from_the_server": "Aucune réponse reçue du serveur.",
+    "error_setting_up_the_request": "Erreur lors de la configuration de la requête.",
+
+
+
+
+
+    "change_password": "Changer le mot de passe",
+    "current_password": "Mot de passe actuel",
+    "new_password": "Nouveau mot de passe",
+    "confirm_new_password": "Confirmer le nouveau mot de passe",
+    "change_password_success": "Mot de passe changé avec succès!",
+    "change_password_error": "Échec du changement de mot de passe.",
+    "passwords_do_not_match": "Le nouveau mot de passe et la confirmation ne correspondent pas.",
+    "server_responded_with_an_error": "Le serveur a répondu avec une erreur.",
+    "no_response_received_from_the_server": "Aucune réponse reçue du serveur.",
+    "error_setting_up_the_request": "Erreur lors de la configuration de la requête.",
+    "back_to_home": "Retour à l'accueil",
+
+
+
+    "admin_dashboard": "Tableau de bord administrateur",
+    "user_summary": "Résumé des utilisateurs",
+    "interns": "Stagiaires",
+    "supervisors": "Superviseurs",
+    "users": "Utilisateurs",
+    "error_fetching_data": "Échec de la récupération des données : {error}",
+
+
+
+
+    "interns_per_supervisor": "Stagiaires par superviseur",
+    "number_of_interns_assigned": "Nombre de stagiaires affectés à chaque superviseur",
+    "error_fetching_data": "Échec de la récupération des données : {error}",
+
+
+
+
+
+    "your_interns": "Vos stagiaires",
+    "error_fetching_interns": "Échec de la récupération des informations des stagiaires.",
+    "no_interns_assigned": "Aucun stagiaire affecté pour le moment.",
+
+
+
+
+    "recruitment_sessions": "Sessions de recrutement",
+    "error_fetching_sessions": "Échec de la récupération des sessions.",
+    "session_created_successfully": "Session de recrutement créée avec succès.",
+    "failed_create_session": "Échec de la création de la session de recrutement.",
+    "existing_sessions": "Sessions existantes",
+    "name": "Nom",
+    "year": "Année",
+    "comment": "Commentaire",
+    "date_created": "Date de création",
+    "date_ended": "Date de fin",
+    "create_session": "Créer une session",
+    "go_back": "Retourner",
+    "active": "Active",
+    "closed": "Fermée",
+
+
+
+
+
+    "userManagement": "Gestion des utilisateurs",
+    "modifyUser": "Modifier l'utilisateur",
+    "addUser": "Ajouter un utilisateur",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "role": "Rôle",
+    "selectSupervisor": "Sélectionner le superviseur",
+    "none": "Aucun",
+    "saveChanges": "Sauvegarder les modifications",
+    "cancel": "Annuler",
+    "backToHome": "Retour à l'accueil",
+    "userList": "Liste des utilisateurs",
+    "loading": "Chargement...",
+    "name": "Nom",
+    "actions": "Actions",
+    "view": "Voir",
+    "modify": "Modifier",
+    "fetchUsersError": "Échec du chargement des utilisateurs. Veuillez réessayer.",
+    "fetchSupervisorsError": "Échec du chargement des superviseurs.",
+    "fetchUserDetailsError": "Échec du chargement des détails de l'utilisateur. Veuillez réessayer.",
+    "saveUserError": "Échec de l'enregistrement de l'utilisateur. Veuillez réessayer.",
+    "roleAccessDenied": "Accès refusé. Seuls les administrateurs peuvent voir cette page.",
+    "roleVerificationError": "Échec de la vérification du rôle. Veuillez vous reconnecter.",
+
+
+    "dashboard": {
+        "title": "Tableau de bord",
+        "neededInterns": "Stagiaires nécessaires",
+        "totalCandidates": "Total des candidats",
+        "totalRecruitmentSessions": "Total des sessions de recrutement"
+    }
+
+}
