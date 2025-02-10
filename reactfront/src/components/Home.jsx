@@ -151,14 +151,12 @@ const Home = ({
 
 
 
-            {isLoggedIn && userData.role === 'admin' && (
+            {isLoggedIn && userData && userData.role === 'admin' && (
                 <DashboardAdmin />
-            
             )}
 
-            {isLoggedIn && userData.role === 'admin' && (
+            {isLoggedIn && userData && userData.role === 'admin' && (
                 <DashboardSupervisor />
-
             )}
 
 
