@@ -22,6 +22,8 @@ using Microsoft.OpenApi.Models;
 using Intership.Application.DTOs;
 using MediatR;
 using Intership.Infrastructure.Count;
+using Microsoft.Extensions.FileProviders;
+using Intership.Infrastructure.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -119,6 +121,37 @@ if (string.IsNullOrEmpty(uploadsPath))
     throw new InvalidOperationException("UploadsPath configuration is missing.");
 }
 builder.Services.AddScoped<IFileStorageService>(provider => new LocalFileStorageService(uploadsPath));
+
+
+
+
+
+
+
+
+
+
+// Register the file storage service
+var cvFolderPath = builder.Configuration.GetValue<string>("CvFolderPath");
+builder.Services.AddScoped<ILocalCvFileStorageService>(provider => new LocalCvFileStorageService(cvFolderPath));
+
+// Register MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UploadCvHandler>());
+
+
+builder.Services.AddScoped<ILocalCvFileStorageService>(provider => new LocalCvFileStorageService(cvFolderPath));
+
+// Register the UserCvService
+builder.Services.AddScoped<UserCvService>();
+
+// Register MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UploadCvHandler>());
+
+
+
+
+
+
 
 
 

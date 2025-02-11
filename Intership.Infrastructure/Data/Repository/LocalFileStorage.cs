@@ -37,5 +37,15 @@ namespace Intership.Infrastructure.Data.Repository
 
             return Path.Combine(containerName, uniqueFileName); // Store relative path in db
         }
+
+
+
+        // Expose the base path through this method
+        public string GetBasePath()
+        {
+            return _basePath;
+        }
+
+
     }
 }

@@ -41,23 +41,7 @@ namespace Intership.Infrastructure.Data
       .OnDelete(DeleteBehavior.SetNull); // If Supervisor is deleted, set SupervisorId to NULL
 
 
-            /*
-            modelBuilder.Entity<InternRecruitmentSession>()
-                .HasKey(irs => new { irs.InternId, irs.RecruitmentSessionId });
-
-            modelBuilder.Entity<InternRecruitmentSession>()
-                .HasOne(irs => irs.Intern)
-                .WithMany(i => i.InternRecruitmentSessions)
-                .HasForeignKey(irs => irs.InternId);
-
-            modelBuilder.Entity<InternRecruitmentSession>()
-                .HasOne(irs => irs.RecruitmentSession)
-                .WithMany(rs => rs.InternRecruitmentSessions)
-                .HasForeignKey(irs => irs.RecruitmentSessionId);
-            */
-            ////////////////
-            //   modelBuilder.Entity<User>().ToTable("Users");
-            //     modelBuilder.Entity<Role>().ToTable("Roles");
+      
 
         }
     }

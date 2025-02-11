@@ -24,7 +24,7 @@ import DashboardSupervisor from './components/DashboardSupervisor';
 
 
 const App = () => {
-   
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
     const [candidates, setCandidates] = useState([]);
@@ -246,7 +246,7 @@ const App = () => {
                 </Routes>
             </Layout>
 
-           
+            
         </div>
 
         

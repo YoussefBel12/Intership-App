@@ -21,6 +21,10 @@ namespace Intership.Infrastructure.Identity
         // 🔹 Navigation property to fetch assigned interns
         public virtual ICollection<ApplicationUser> SupervisedInterns { get; set; } = new List<ApplicationUser>();
 
+
+        // URL to store the CV file in PDF format
+        public string? CvFileUrl { get; set; }
+
     }
 
 }

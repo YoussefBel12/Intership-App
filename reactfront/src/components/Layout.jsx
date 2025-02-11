@@ -204,6 +204,7 @@ import { Link } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
+import UserCvUploadButton from './UserCvUploadButton';
 
 const Layout = ({ children, userData, handleLogout }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -241,6 +242,19 @@ const Layout = ({ children, userData, handleLogout }) => {
                             </IconButton>
                         </Box>
                     )}
+
+
+
+
+                    
+
+
+                    {userData && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                            <UserCvUploadButton userId={userData.id} />
+                        </Box>
+                    )}
+
 
 
                     <LanguageSwitcher />
@@ -283,7 +297,18 @@ const Layout = ({ children, userData, handleLogout }) => {
                                             {t('layout.Want To Post Your Candidature')}
                                         </ListItemButton>
                                     </ListItem>
+
                                 )}
+
+
+
+
+
+                              
+
+
+
+
                                 {userData.role === 'admin' && (
                                     <ListItem disablePadding>
                                         <ListItemButton component={Link} to="/CandidateList" sx={{ color: 'white' }}>
@@ -373,6 +398,7 @@ Layout.propTypes = {
     userData: PropTypes.shape({
         email: PropTypes.string.isRequired,
         role: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
     }),
     handleLogout: PropTypes.func.isRequired,
 };
